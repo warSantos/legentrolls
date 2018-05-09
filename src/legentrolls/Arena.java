@@ -15,20 +15,16 @@ public class Arena extends Thread {
         
         this.mapaSalas = new Sala[20];
         for (int i = 0; i < 20; ++i) {
-
             this.mapaSalas[i] = new Sala();
         }
         this.player = new Personagem();
-        
     }
 
     public void constroiSalas() throws IOException {
 
         /* Capturando arquivo com nomes de trolls */
         Scanner input = new Scanner(System.in);
-
         for (int j = 0; j < 20; j++) {
-
             mapaSalas[j].troll.criaTrolls();
             mapaSalas[j].bau.criarItens();
         }
@@ -120,16 +116,11 @@ public class Arena extends Thread {
         System.out.println("");
         System.out.println("");
         for(int i = 0; i < 4; ++i){
-            
             for(int j = 0; j < 5;++j){
-                                                    
                 if(mapaSalas[(i * 5) + j].getVisitado() == 1){
-                    
                     if(((i * 5) + j) > 9){
-                    
                         System.out.print("  | " + ((i * 5) + j) +"   |  "); 
                     }else{
-                        
                         System.out.print("  |  " + ((i * 5) + j) +"   |  ");
                     }
                 }
@@ -160,18 +151,18 @@ public class Arena extends Thread {
         System.out.println("");
         System.out.println("Comandos...");
         System.out.println("");
-        System.out.println("axetrolls (kill)");
-        System.out.println("closedoor");
-        System.out.println("drop");
-        System.out.println("exit");
-        System.out.println("moveto");
-        System.out.println("quit");
-        System.out.println("pickup");
-        System.out.println("showdoors");
-        System.out.println("map");
-        System.out.println("showme");
-        System.out.println("view");
+        System.out.println("cd");
+        System.out.println("close");
+        System.out.println("del");
         System.out.println("help");
+        System.out.println("ls");
+        System.out.println("lsdoors");
+        System.out.println("lsmap");
+        System.out.println("lsme");
+        System.out.println("moveto");
+        System.out.println("quit (Surrender)");
+        System.out.println("rm (kill)");
+        System.out.println("take");
         System.out.println("");
     }
     
@@ -422,11 +413,11 @@ public class Arena extends Thread {
         new Thread() {
             @Override
             public void run() {
-                
+                /*
                 Random gerador = new Random();
                 int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
                 int numSala = player.getPosicao();
-
+				
                 try {
 
                     System.err.println("Sala " + player.getPosicao() + ".");
@@ -442,6 +433,7 @@ public class Arena extends Thread {
                     player.perdeItens();
                     entrarSala(tempoID);
                 }
+			*/
             }
         }.start();
     }
@@ -506,11 +498,11 @@ public class Arena extends Thread {
             comando = input.next();
             switch (comando) {
                 
-                case "exit":
+                case "cd":
                     exit(complemento, player.getPosicao());
                     break;
                 // Mostra Arena;
-                case "map":
+                case "lsmap":
                     showMap();
                     break;
                 // mostra portas em uma sala.
@@ -519,11 +511,11 @@ public class Arena extends Thread {
                     mapaSalas[player.getPosicao()].portas.showDoors();
                     break;
                 // mostra itens na bag e sala atual.
-                case "showme":
+                case "lsme":
                     player.showMe();
                     break;
                 // mostra itens da sala.
-                case "view":
+                case "ls":
                     view();
                     break;
                 case "help":
@@ -541,7 +533,7 @@ public class Arena extends Thread {
                      System.exit(0);
                     break;
                 // Arrmessa machado
-                case "kill":
+                case "rm":
                     
                     if(player.bag.getMachado() > 0){
                         
@@ -554,7 +546,7 @@ public class Arena extends Thread {
                     }
                     break;
                 // fechar porta.
-                case "closedoor":
+                case "close":
                     
                     complemento = input.nextInt();
                     closeDoor(complemento);
@@ -569,7 +561,7 @@ public class Arena extends Thread {
                     moveTo(parametro, complemento);
                     break;
                 // Inserindo Itens na bag do player.
-                case "pickup":
+                case "take":
                     parametro = input.next();
                     if(!"gold".equals(parametro) && !"diam".equals(parametro)){
                         
@@ -578,7 +570,7 @@ public class Arena extends Thread {
                     pickup(parametro, complemento);
                     break;
                 // removendo intens da bag.
-                case "drop":
+                case "del":
                     parametro = input.next();
                     if(!"gold".equals(parametro) && !"diam".equals(parametro)){
                         
