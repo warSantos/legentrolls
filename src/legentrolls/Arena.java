@@ -8,8 +8,24 @@ import java.util.logging.Logger;
 
 public class Arena extends Thread {
     
-    private Sala[] mapaSalas; 
-    private Personagem player; 
+    private Sala[] mapaSalas;
+    private Personagem player;
+
+    public Sala[] getMapaSalas() {
+        return mapaSalas;
+    }
+
+    public void setMapaSalas(Sala[] mapaSalas) {
+        this.mapaSalas = mapaSalas;
+    }
+
+    public Personagem getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Personagem player) {
+        this.player = player;
+    }
 
     public Arena() {
         
@@ -25,80 +41,80 @@ public class Arena extends Thread {
         /* Capturando arquivo com nomes de trolls */
         Scanner input = new Scanner(System.in);
         for (int j = 0; j < 20; j++) {
-            mapaSalas[j].troll.criaTrolls();
-            mapaSalas[j].bau.criarItens();
+            mapaSalas[j].getTroll().criaTrolls();
+            mapaSalas[j].getBau().criarItens();
         }
         System.out.println("Finalizando construção das salas...");
     }
 
     public void constroiArena() {
 
-        player.coistroiPlayer();
+        player.construirPlayer();
         mapaSalas[15].setVisitado(1);
         mapaSalas[15].setJogadorEsta(1);
         /* Iniciando portas */
         /* (qual porta do vetor, qual porta para sala, estado) */
         System.out.println("Criando salas...");
 
-        mapaSalas[0].portas.setPortas(0, 1, 2); // 0,1
-        mapaSalas[0].portas.setPortas(1, 5, 2); // 0,5
+        mapaSalas[0].getPortas().setPortas(0, 1, 2); // 0,1
+        mapaSalas[0].getPortas().setPortas(1, 5, 2); // 0,5
 
-        mapaSalas[1].portas.setPortas(0, 0, 2); // 1,0
-        mapaSalas[1].portas.setPortas(1, 2, 1);
+        mapaSalas[1].getPortas().setPortas(0, 0, 2); // 1,0
+        mapaSalas[1].getPortas().setPortas(1, 2, 1);
 
-        mapaSalas[2].portas.setPortas(0, 1, 1);
-        mapaSalas[2].portas.setPortas(1, 3, 2); // 2,3
+        mapaSalas[2].getPortas().setPortas(0, 1, 1);
+        mapaSalas[2].getPortas().setPortas(1, 3, 2); // 2,3
 
-        mapaSalas[3].portas.setPortas(0, 2, 2); // 3,2
-        mapaSalas[3].portas.setPortas(1, 8, 1);
+        mapaSalas[3].getPortas().setPortas(0, 2, 2); // 3,2
+        mapaSalas[3].getPortas().setPortas(1, 8, 1);
 
-        mapaSalas[4].portas.setPortas(0, 9, 1);
+        mapaSalas[4].getPortas().setPortas(0, 9, 1);
 
-        mapaSalas[5].portas.setPortas(0, 0, 2); // 5,0
-        mapaSalas[5].portas.setPortas(1, 6, 1);
+        mapaSalas[5].getPortas().setPortas(0, 0, 2); // 5,0
+        mapaSalas[5].getPortas().setPortas(1, 6, 1);
 
-        mapaSalas[6].portas.setPortas(0, 5, 1);
-        mapaSalas[6].portas.setPortas(1, 7, 1);
-        mapaSalas[6].portas.setPortas(2, 11, 1);
+        mapaSalas[6].getPortas().setPortas(0, 5, 1);
+        mapaSalas[6].getPortas().setPortas(1, 7, 1);
+        mapaSalas[6].getPortas().setPortas(2, 11, 1);
 
-        mapaSalas[7].portas.setPortas(0, 6, 1);
-        mapaSalas[7].portas.setPortas(1, 12, 2); // 7,12
+        mapaSalas[7].getPortas().setPortas(0, 6, 1);
+        mapaSalas[7].getPortas().setPortas(1, 12, 2); // 7,12
 
-        mapaSalas[8].portas.setPortas(0, 3, 1);
-        mapaSalas[8].portas.setPortas(1, 9, 1);
+        mapaSalas[8].getPortas().setPortas(0, 3, 1);
+        mapaSalas[8].getPortas().setPortas(1, 9, 1);
 
-        mapaSalas[9].portas.setPortas(0, 4, 1);
-        mapaSalas[9].portas.setPortas(1, 8, 1);
-        mapaSalas[9].portas.setPortas(2, 14, 2); // 9,14
+        mapaSalas[9].getPortas().setPortas(0, 4, 1);
+        mapaSalas[9].getPortas().setPortas(1, 8, 1);
+        mapaSalas[9].getPortas().setPortas(2, 14, 2); // 9,14
 
-        mapaSalas[10].portas.setPortas(0, 11, 2); // 10,11
-        mapaSalas[10].portas.setPortas(1, 15, 1);
+        mapaSalas[10].getPortas().setPortas(0, 11, 2); // 10,11
+        mapaSalas[10].getPortas().setPortas(1, 15, 1);
 
-        mapaSalas[11].portas.setPortas(0, 6, 1);
-        mapaSalas[11].portas.setPortas(1, 10, 2); // 11,10
+        mapaSalas[11].getPortas().setPortas(0, 6, 1);
+        mapaSalas[11].getPortas().setPortas(1, 10, 2); // 11,10
 
-        mapaSalas[12].portas.setPortas(0, 7, 2); // 12,7
-        mapaSalas[12].portas.setPortas(1, 17, 1);
+        mapaSalas[12].getPortas().setPortas(0, 7, 2); // 12,7
+        mapaSalas[12].getPortas().setPortas(1, 17, 1);
 
-        mapaSalas[13].portas.setPortas(0, 14, 1);
+        mapaSalas[13].getPortas().setPortas(0, 14, 1);
 
-        mapaSalas[14].portas.setPortas(0, 9, 2); // 14,9
-        mapaSalas[14].portas.setPortas(1, 13, 1);
-        mapaSalas[14].portas.setPortas(2, 19, 1);
+        mapaSalas[14].getPortas().setPortas(0, 9, 2); // 14,9
+        mapaSalas[14].getPortas().setPortas(1, 13, 1);
+        mapaSalas[14].getPortas().setPortas(2, 19, 1);
 
-        mapaSalas[15].portas.setPortas(0, 10, 1);
-        mapaSalas[15].portas.setPortas(1, 16, 1);
+        mapaSalas[15].getPortas().setPortas(0, 10, 1);
+        mapaSalas[15].getPortas().setPortas(1, 16, 1);
 
-        mapaSalas[16].portas.setPortas(0, 15, 1);
-        mapaSalas[16].portas.setPortas(1, 17, 1);
+        mapaSalas[16].getPortas().setPortas(0, 15, 1);
+        mapaSalas[16].getPortas().setPortas(1, 17, 1);
 
-        mapaSalas[17].portas.setPortas(0, 12, 1);
-        mapaSalas[17].portas.setPortas(1, 16, 1);
+        mapaSalas[17].getPortas().setPortas(0, 12, 1);
+        mapaSalas[17].getPortas().setPortas(1, 16, 1);
 
-        mapaSalas[18].portas.setPortas(0, 19, 2); // 18,19
+        mapaSalas[18].getPortas().setPortas(0, 19, 2); // 18,19
 
-        mapaSalas[19].portas.setPortas(1, 14, 1);
-        mapaSalas[19].portas.setPortas(1, 18, 2); // 19,18
+        mapaSalas[19].getPortas().setPortas(1, 14, 1);
+        mapaSalas[19].getPortas().setPortas(1, 18, 2); // 19,18
         
         /* Configurando Sala (intens e trolls).*/
 
@@ -134,15 +150,15 @@ public class Arena extends Thread {
         
         System.out.println("");
         System.out.println("Sala: " + player.getPosicao() + " Itens: ");
-        System.out.println("Machados: " + mapaSalas[player.getPosicao()].bau.getMachado());
-        System.out.println("Diamante: " + mapaSalas[player.getPosicao()].bau.getQtdeDiam());
-        System.out.println("Ouro: " + mapaSalas[player.getPosicao()].bau.getQtdeOuro());
-        System.out.println("Poção: " + mapaSalas[player.getPosicao()].bau.getQtdePocao());
-        System.out.println("Chaves: " + mapaSalas[player.getPosicao()].bau.getQtdeChave());
+        System.out.println("Machados: " + mapaSalas[player.getPosicao()].getBau().getMachado());
+        System.out.println("Diamante: " + mapaSalas[player.getPosicao()].getBau().getQtdeDiam());
+        System.out.println("Ouro: " + mapaSalas[player.getPosicao()].getBau().getQtdeOuro());
+        System.out.println("Poção: " + mapaSalas[player.getPosicao()].getBau().getQtdePocao());
+        System.out.println("Chaves: " + mapaSalas[player.getPosicao()].getBau().getQtdeChave());
         System.out.println("Trolls");
-        mapaSalas[player.getPosicao()].troll.listaTrolls();
+        mapaSalas[player.getPosicao()].getTroll().listaTrolls();
         System.out.println("Portas:");
-        mapaSalas[player.getPosicao()].portas.showDoors();
+        mapaSalas[player.getPosicao()].getPortas().showDoors();
         System.out.println("");
     }
 
@@ -265,14 +281,14 @@ public class Arena extends Thread {
             
         }else if(player.getQualItem() == 11){
             
-            if(player.bag.getQtdeChave() > 0){
+            if(player.getBag().getQtdeChave() > 0){
                 
-                player.bag.removeChave(1);
+                player.getBag().removeChave(1);
                 player.setposicao(novaSala);
                 mapaSalas[salaAntiga].setJogadorEsta(0);
                 System.out.println("Abrindo Porta...");
-                mapaSalas[salaAntiga].portas.alteraEstado(novaSala, 1);
-                mapaSalas[novaSala].portas.alteraEstado(salaAntiga, 1);
+                mapaSalas[salaAntiga].getPortas().alteraEstado(novaSala, 1);
+                mapaSalas[novaSala].getPortas().alteraEstado(salaAntiga, 1);
                 System.out.println("Saindo...");
                 mapaSalas[novaSala].setJogadorEsta(1);
                 mapaSalas[novaSala].setVisitado(1);
@@ -288,14 +304,14 @@ public class Arena extends Thread {
     
     public void closeDoor(int porta){
         
-        if(player.bag.getQtdePocao() > 0){
+        if(player.getBag().getQtdeChave() > 0){
             
-            switch (mapaSalas[player.getPosicao()].portas.existePorta(porta)) {
+            switch (mapaSalas[player.getPosicao()].getPortas().existePorta(porta)) {
                 case 1:
                     System.out.println("Fechando porta "+ porta +" ...");
-                    mapaSalas[player.getPosicao()].portas.alteraEstado(porta, 2);
-                    mapaSalas[porta].portas.alteraEstado(player.getPosicao(), 2);
-                    player.bag.removePocao(1);
+                    mapaSalas[player.getPosicao()].getPortas().alteraEstado(porta, 2);
+                    mapaSalas[porta].getPortas().alteraEstado(player.getPosicao(), 2);
+                    player.getBag().removeChave(1);
                     break;
                 case 2:
                     System.out.println("A porta ja esta fechada...");                    
@@ -310,7 +326,7 @@ public class Arena extends Thread {
         
         if ("door".equals(parametro)) {
             
-            switch (mapaSalas[player.getPosicao()].portas.existePorta(complemento)) {
+            switch (mapaSalas[player.getPosicao()].getPortas().existePorta(complemento)) {
                 case 1:
                     // porta aberta.
                     player.setQualItem(10);
@@ -375,10 +391,10 @@ public class Arena extends Thread {
 
                 if (player.confirmaPickup(1) == 1){
                 
-                    if(verificaQtde(mapaSalas[player.getPosicao()].bau.qtdeChave, complemento) == 1) {
+                    if(verificaQtde(mapaSalas[player.getPosicao()].getBau().getQtdeChave(), complemento) == 1) {
 
-                        qtdeItemPegos = player.bag.insereChave(complemento);
-                        mapaSalas[player.getPosicao()].bau.removeChave(qtdeItemPegos);
+                        qtdeItemPegos = player.getBag().insereChave(complemento);
+                        mapaSalas[player.getPosicao()].getBau().removeChave(qtdeItemPegos);
                         player.setQualItem(0);
                     }else{
                         
@@ -394,9 +410,9 @@ public class Arena extends Thread {
 
                 if (player.confirmaPickup(2) == 1) {
 
-                    player.bag.setQtdeDiam(mapaSalas[player.getPosicao()].bau.qtdeDiam + player.bag.getQtdeDiam());
+                    player.getBag().setQtdeDiam(mapaSalas[player.getPosicao()].getBau().getQtdeDiam() + player.getBag().getQtdeDiam());
                     player.setQualItem(0);
-                    mapaSalas[player.getPosicao()].bau.setQtdeDiam(0);
+                    mapaSalas[player.getPosicao()].getBau().setQtdeDiam(0);
                 } else {
 
                     System.err.println("Não há diamante perto de você.");
@@ -407,10 +423,10 @@ public class Arena extends Thread {
                 
                 if (player.confirmaPickup(3) == 1) {
                         
-                    if(verificaQtde(mapaSalas[player.getPosicao()].bau.machado, complemento) == 1) {
+                    if(verificaQtde(mapaSalas[player.getPosicao()].getBau().getMachado(), complemento) == 1) {
 
-                        qtdeItemPegos = player.bag.insereMachado(complemento);
-                        mapaSalas[player.getPosicao()].bau.removeMachado(qtdeItemPegos);
+                        qtdeItemPegos = player.getBag().insereMachado(complemento);
+                        mapaSalas[player.getPosicao()].getBau().removeMachado(qtdeItemPegos);
                         player.setQualItem(0);
                     }else{
                         
@@ -426,9 +442,9 @@ public class Arena extends Thread {
 
                 if (player.confirmaPickup(4) == 1) {
 
-                    player.bag.setQtdeOuro(mapaSalas[player.getPosicao()].bau.qtdeOuro + player.bag.getQtdeOuro());
+                    player.getBag().setQtdeOuro(mapaSalas[player.getPosicao()].getBau().getQtdeOuro() + player.getBag().getQtdeOuro());
                     player.setQualItem(0);
-                    mapaSalas[player.getPosicao()].bau.setQtdeOuro(0);
+                    mapaSalas[player.getPosicao()].getBau().setQtdeOuro(0);
                 } else {
 
                     System.err.println("Não há ouro perto de você.");
@@ -439,10 +455,10 @@ public class Arena extends Thread {
                 
                 if (player.confirmaPickup(5) == 1) {
                         
-                    if(verificaQtde(mapaSalas[player.getPosicao()].bau.qtdePocao, complemento) == 1) {
+                    if(verificaQtde(mapaSalas[player.getPosicao()].getBau().getQtdePocao(), complemento) == 1) {
 
-                        qtdeItemPegos = player.bag.inserePocao(complemento);
-                        mapaSalas[player.getPosicao()].bau.removePocao(qtdeItemPegos);
+                        qtdeItemPegos = player.getBag().inserePocao(complemento);
+                        mapaSalas[player.getPosicao()].getBau().removePocao(qtdeItemPegos);
                         player.setQualItem(0);
                     }else{
                         
@@ -465,23 +481,23 @@ public class Arena extends Thread {
         switch (parametro) {
             // jogar fora chave.
             case "key":
-                player.bag.removeChave(complemento);
+                player.getBag().removeChave(complemento);
                 break;
             // jogar fora diamante.
             case "diam":
-                player.bag.setQtdeDiam(0);
+                player.getBag().setQtdeDiam(0);
                 break;
             // jogar fora machado.
             case "axe":
-                player.bag.removeMachado(complemento);
+                player.getBag().removeMachado(complemento);
                 break;
             // jogar fora ouro.
             case "gold":
-                player.bag.setQtdeOuro(0);
+                player.getBag().setQtdeOuro(0);
                 break;
             // jogar fora potion
             case "potion":
-                player.bag.removePocao(complemento);
+                player.getBag().removePocao(complemento);
                 break;
             default:
                 // opção inválida para comando moveto.
@@ -528,24 +544,24 @@ public class Arena extends Thread {
         for(i = 0; i < qtdeMovimentos; ++i){
             
             salaRandom = geraRandom.nextInt(19); // Sala a ter trolls retirados...
-            if(mapaSalas[salaRandom].troll.getQtdeTrolls() > 0 && salaRandom != player.getPosicao()){
+            if(mapaSalas[salaRandom].getTroll().getQtdeTrolls() > 0 && salaRandom != player.getPosicao()){
                 
-                int salaIda = mapaSalas[salaRandom].portas.portaAberta();
-                if(salaIda >= 0 && mapaSalas[salaRandom].troll.getQtdeTrolls() + 
-                        mapaSalas[salaIda].troll.getQtdeTrolls() < 5){
+                int salaIda = mapaSalas[salaRandom].getPortas().portaAberta();
+                if(salaIda >= 0 && mapaSalas[salaRandom].getTroll().getQtdeTrolls() + 
+                        mapaSalas[salaIda].getTroll().getQtdeTrolls() < 5){
                     
                     for(int j = 0; j < 5; ++j){
                         
-                        if("-".equals(mapaSalas[salaIda].troll.getNome(j))){
+                        if("-".equals(mapaSalas[salaIda].getTroll().getNome(j))){
                             
                             for(int k = 0; k < 5; ++k){
                                 
-                                if(!"-".equals(mapaSalas[salaRandom].troll.getNome(k))){
+                                if(!"-".equals(mapaSalas[salaRandom].getTroll().getNome(k))){
                                     
-                                    mapaSalas[salaIda].troll.setNome(mapaSalas[salaRandom].troll.getNome(k), j);
-                                    mapaSalas[salaRandom].troll.setNome("-", k);
-                                    mapaSalas[salaIda].troll.increQtdeTrolls();
-                                    mapaSalas[salaRandom].troll.decreQtdeTrolls();
+                                    mapaSalas[salaIda].getTroll().setNome(mapaSalas[salaRandom].getTroll().getNome(k), j);
+                                    mapaSalas[salaRandom].getTroll().setNome("-", k);
+                                    mapaSalas[salaIda].getTroll().increQtdeTrolls();
+                                    mapaSalas[salaRandom].getTroll().decreQtdeTrolls();
                                     k = 5;
                                 }
                             }
@@ -571,9 +587,9 @@ public class Arena extends Thread {
         limpaBuffer = input.nextLine();
         while (true) {
             
-            if(mapaSalas[player.getPosicao()].troll.getQtdeTrolls() > 0 
+            if(mapaSalas[player.getPosicao()].getTroll().getQtdeTrolls() > 0 
                     && mapaSalas[player.getPosicao()].getAtivarAtaque() == 1){
-                entrarSala(player.tempo);
+                entrarSala(player.getTempo());
                 mapaSalas[player.getPosicao()].setAtivarAtaque(0);
             }
             System.out.print("> ");
@@ -624,7 +640,7 @@ public class Arena extends Thread {
                 // mostra portas em uma sala.
                 case "lsdoors":
                     System.out.println("Portas...");
-                    mapaSalas[player.getPosicao()].portas.showDoors();
+                    mapaSalas[player.getPosicao()].getPortas().showDoors();
                     break;
                 // mostra itens na bag e sala atual.
                 case "lsme":
@@ -644,9 +660,9 @@ public class Arena extends Thread {
                     break;
                 // Arremessa machado
                 case "rm":
-                    if(player.bag.getMachado() > 0){
-                        mapaSalas[player.getPosicao()].troll.removeTrolls(parametro);
-                        player.bag.removeMachado(1);
+                    if(player.getBag().getMachado() > 0){
+                        mapaSalas[player.getPosicao()].getTroll().removeTrolls(parametro);
+                        player.getBag().removeMachado(1);
                     }else{
                         
                         System.out.println("Machados zerados...");
