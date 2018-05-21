@@ -98,31 +98,18 @@ public class Personagem {
             bag.setQtdeOuro(0);
             bag.setQtdePocao(0);
             bag.setQtdeItens(0);
-<<<<<<< HEAD
-        
         }else{
             
             System.out.println("Você morreu.");
-			System.out.println("FIM DE JOGO - DERROTA");
+            System.out.println("FIM DE JOGO - DERROTA");
             System.exit(0);           
-=======
-
-        } else {
-
-            System.out.println("This Game is over... hahahahahahah");
-            System.exit(0);
->>>>>>> 5e897a57b83f585ef28848cd4b8c45a8817f2e44
         }
     }
 
     public void showMe() {
 
         System.out.println("");
-<<<<<<< HEAD
-        System.out.println("Itens no inventário: " + bag.qtdeItens);
-=======
-        System.out.println("Itens na bag " + bag.getQtdeItens());
->>>>>>> 5e897a57b83f585ef28848cd4b8c45a8817f2e44
+        System.out.println("Itens no inventário: " + getBag().getQtdeItens());
         System.out.println("Machados: " + bag.getMachado());
         System.out.println("Diamante: " + bag.getQtdeDiam());
         System.out.println("Ouro: " + bag.getQtdeOuro());

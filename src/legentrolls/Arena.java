@@ -150,19 +150,7 @@ public class Arena extends Thread {
         
         System.out.println("");
         System.out.println("Sala: " + player.getPosicao() + " Itens: ");
-<<<<<<< HEAD
-        System.out.println("Machados: " + mapaSalas[player.getPosicao()].bau.getMachado());
-        System.out.println("Diamante: " + mapaSalas[player.getPosicao()].bau.getQtdeDiam());
-        System.out.println("Ouro: " + mapaSalas[player.getPosicao()].bau.getQtdeOuro());
-        System.out.println("Poção: " + mapaSalas[player.getPosicao()].bau.getQtdePocao());
-        System.out.println("Chaves: " + mapaSalas[player.getPosicao()].bau.getQtdeChave());
-		System.out.println("");
-        System.out.println("Trolls");
-        mapaSalas[player.getPosicao()].troll.listaTrolls();
         System.out.println("");
-		System.out.println("Portas:");
-        mapaSalas[player.getPosicao()].portas.showDoors();
-=======
         System.out.println("Machados: " + mapaSalas[player.getPosicao()].getBau().getMachado());
         System.out.println("Diamante: " + mapaSalas[player.getPosicao()].getBau().getQtdeDiam());
         System.out.println("Ouro: " + mapaSalas[player.getPosicao()].getBau().getQtdeOuro());
@@ -172,7 +160,6 @@ public class Arena extends Thread {
         mapaSalas[player.getPosicao()].getTroll().listaTrolls();
         System.out.println("Portas:");
         mapaSalas[player.getPosicao()].getPortas().showDoors();
->>>>>>> 5e897a57b83f585ef28848cd4b8c45a8817f2e44
         System.out.println("");
     }
 
@@ -300,17 +287,10 @@ public class Arena extends Thread {
                 player.getBag().removeChave(1);
                 player.setposicao(novaSala);
                 mapaSalas[salaAntiga].setJogadorEsta(0);
-<<<<<<< HEAD
-                System.out.println("Abrindo porta...");
-                mapaSalas[salaAntiga].portas.alteraEstado(novaSala, 1);
-                mapaSalas[novaSala].portas.alteraEstado(salaAntiga, 1);
-                System.out.println("Saindo da sala...");
-=======
                 System.out.println("Abrindo Porta...");
                 mapaSalas[salaAntiga].getPortas().alteraEstado(novaSala, 1);
                 mapaSalas[novaSala].getPortas().alteraEstado(salaAntiga, 1);
                 System.out.println("Saindo...");
->>>>>>> 5e897a57b83f585ef28848cd4b8c45a8817f2e44
                 mapaSalas[novaSala].setJogadorEsta(1);
                 mapaSalas[novaSala].setVisitado(1);
                 player.setTempo();
@@ -321,11 +301,11 @@ public class Arena extends Thread {
                 System.out.println("Você está sem chaves.");
             }
         }
-		if(novaSala == 18){
-			System.out.println("Parabéns! Você encontrou a saída!");
-			System.out.println("FIM DE JOGO - VITÓRIA");
-			System.exit(0);
-		}
+	if (novaSala == 18) {
+            System.out.println("Parabéns! Você encontrou a saída!");
+            System.out.println("FIM DE JOGO - VITÓRIA");
+            System.exit(0);
+        }
     }
     
     public void closeDoor(int porta){
@@ -334,17 +314,10 @@ public class Arena extends Thread {
             
             switch (mapaSalas[player.getPosicao()].getPortas().existePorta(porta)) {
                 case 1:
-<<<<<<< HEAD
-                    System.out.println("Fechando porta "+ porta +"...");
-                    mapaSalas[player.getPosicao()].portas.alteraEstado(porta, 2);
-                    mapaSalas[porta].portas.alteraEstado(player.getPosicao(), 2);
-                    player.bag.removePocao(1);
-=======
                     System.out.println("Fechando porta "+ porta +" ...");
                     mapaSalas[player.getPosicao()].getPortas().alteraEstado(porta, 2);
                     mapaSalas[porta].getPortas().alteraEstado(player.getPosicao(), 2);
                     player.getBag().removeChave(1);
->>>>>>> 5e897a57b83f585ef28848cd4b8c45a8817f2e44
                     break;
                 case 2:
                     System.out.println("Esta porta já está fechada.");                    
