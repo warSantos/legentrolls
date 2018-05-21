@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 
 public class Arena extends Thread {
     
-    Sala[] mapaSalas; 
-    Personagem player; 
+    private Sala[] mapaSalas; 
+    private Personagem player; 
 
     public Arena() {
         
@@ -148,81 +148,106 @@ public class Arena extends Thread {
 
     public void help(String parametro) {
         
-		switch (parametro){
-			
-			case "cd":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "close":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: close door 1");	
-				break;
-			case "del":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "ls":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "lsdoors":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "lsmap":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "lsme":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "moveto":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "quit":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "rm":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			case "take":
-				System.out.println("Função: sair de uma sala.");	
-				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
-				System.out.println("Exemplo: cd");	
-				break;
-			default :
-				System.out.println("");
-				System.out.println("Comandos...");
-				System.out.println("");
-				System.out.println("cd");
-				System.out.println("close");
-				System.out.println("del");
-				System.out.println("help");
-				System.out.println("ls");
-				System.out.println("lsdoors");
-				System.out.println("lsmap");
-				System.out.println("lsme");
-				System.out.println("moveto");
-				System.out.println("quit (Surrender)");
-				System.out.println("rm (kill)");
-				System.out.println("take");
-				System.out.println("");
-			}
+        switch (parametro) {
+
+            case "cd":
+                System.out.println("\nFunção: sair de uma sala.");
+                System.out.println("Requisitos:\n\t1. É necessário que o player esteja próximo a uma porta.");
+                System.out.println("2. Se a porta estiver fechada é necessário possuir ao menos uma chave\n" + 
+                        "na mochila para abrir a porta.");
+                System.out.println("Exemplo: > cd");
+                break;
+            case "close":
+                System.out.println("\nFunção: fecha uma porta.");
+                System.out.println("Requisitos: é necessário que o player esteja próximo a uma porta e\n" + 
+                        "possuir ao menos uma chave em sua mochila.");
+                System.out.println("Exemplo: > close");
+                break;
+            case "del":
+                System.out.println("\nFunção: remove um item da mochila.");
+                System.out.println("Parâmetros: axe, diam, gold, key e potion.");
+                System.out.println("Exemplo: del gold");
+                System.out.println("Requisitos: para os intens axe, key e potion é necessário informar\n" + 
+                        "a quantidade desejada.");
+                System.out.println("Exemplo: > del axe 2");
+                break;
+            case "ls":
+                System.out.println("\nFunção: exibe as configurações da sala.");
+                System.out.println("Requisitos: não possui requisitos.");
+                System.out.println("Exemplo: > ls");
+                break;
+            case "lsdoors":
+                System.out.println("\nFunção: exibe as portas existentes na sala e seus respectivos\n" +
+                        "estados (Aberta ou Fechada).");
+                System.out.println("Requisitos: não possui requisitos.");
+                System.out.println("Exemplo: > lsdoors");
+                break;
+            case "lsmap":
+                System.out.println("\nFunção: exibe o mapa geral das salas.");
+                System.out.println("Requisitos: não possui requisitos.");
+                System.out.println("Exemplo: > lsmap");
+                break;
+            case "lsme":
+                System.out.println("\nFunção: exibe os itens do player e em qual sala ele está.");
+                System.out.println("Requisitos: não possui requisitos.");
+                System.out.println("Exemplo: > lsme");
+                break;
+            case "moveto":
+                System.out.println("\nFunção: move o player para um iten ou porta.");
+                System.out.println("Parâmetros: axe, diam, door, gold, key e potion");
+                System.out.println("Requisitos:\n\t1. Não possui requisitos para mover em direção a um item.");
+                System.out.println("\tExemplo: moveto axe");
+                System.out.println("\t2. É necessário indicar para qual porta deseja se " +
+                        "mover.");
+                System.out.println("\tExemplo: moveto door 8");
+                break;
+            case "quit":
+                System.out.println("\nFunção: encerra o jogo (perde).");
+                System.out.println("Requisitos: não possui requisitos.");
+                System.out.println("Exemplo: cd");
+                break;
+            case "rm":
+                System.out.println("\nFunção: mata os trolls.");
+                System.out.println("Parâmetros: Nomes");
+                System.out.println("Requisitos:\n\t1. O player deve possuir machados em sua mochila.");
+                System.out.println("\t2. Deve-se indicar o nome do troll alvo.");
+                System.out.println("\tExemplo: rm Armor");
+                break;
+            case "take":
+                System.out.println("\nFunção: pega um item presente na sala e coloca na mochila.");
+                System.out.println("Parâmetros: axe, diam, gold, key e potion");
+                System.out.println("Requisitos:\n\t1. Primeiro deve-se mover o player em direção\n" + 
+                        "\tao item desejado.");
+                System.out.println("\t2. Para os itens OURO e DIAMANTE não é" + 
+                        "\tnecessário indicar a quantidade\n\tdesejada (Todo ouro ou diamante na sala é" + 
+                        "adiquirido para o player).");
+                System.out.println("\tExemplo: take gold");
+                System.out.println("\t3. Para os itens CHAVE, MACHADO e POÇÃO, deve-se" + 
+                        " informar a quantidade desejada.");
+                System.out.println("\tExemplo: take key 2");
+                break;
+            default:
+                System.out.println("\nDocumentação Legentrolls, versão 0.1.");
+                System.out.println("");
+                System.out.println("Comandos Básicos.");
+                System.out.println("");
+                System.out.println("cd");
+                System.out.println("close");
+                System.out.println("del");
+                System.out.println("help");
+                System.out.println("ls");
+                System.out.println("lsdoors");
+                System.out.println("lsmap");
+                System.out.println("lsme");
+                System.out.println("moveto");
+                System.out.println("quit (Surrender)");
+                System.out.println("rm (kill)");
+                System.out.println("take\n");
+                System.out.println("Todos os comandos possuem manuais com maiores detalhes. Para consultar\n" +
+                        "o manual de cada comando, deve se utilizar a combinação: \"help + parametro\"");
+                System.out.println("Exemplo: help moveto\n");
+                break;
+        }
     }
     
     public void exit(int novaSala, int salaAntiga){
@@ -273,13 +298,11 @@ public class Arena extends Thread {
                     player.bag.removePocao(1);
                     break;
                 case 2:
-                    System.out.println("A porta ja esta fechada...");
-                    break;
-                default:
-                    System.out.println("Porta Inexistente...");
+                    System.out.println("A porta ja esta fechada...");                    
                     break;
             }
-        }    
+            return;
+        }
         System.out.println("Suas poções acabaram.");    
     }
     
@@ -538,37 +561,68 @@ public class Arena extends Thread {
         
         // Construindo arena.
         constroiArena();
-        String comando = null, parametro = null, limpaBuffer = null;
+        String comando = null, parametro = "help", limpaBuffer = null;
         int complemento = -1;
         Scanner input;
         input = new Scanner(System.in);
-        help();
+        help("help");
         System.out.println("Finalizando configurações extras...");
         System.out.println("Pronto para iniciar (S/n)?: ");
-        limpaBuffer = input.next();
-		while (true) {
+        limpaBuffer = input.nextLine();
+        while (true) {
             
             if(mapaSalas[player.getPosicao()].troll.getQtdeTrolls() > 0 
                     && mapaSalas[player.getPosicao()].getAtivarAtaque() == 1){
                 entrarSala(player.tempo);
                 mapaSalas[player.getPosicao()].setAtivarAtaque(0);
             }
-            
             System.out.print("> ");
-            String args[] = input.next();
-           	int numberArgs = args.length();
-			System.out.println("numberArgs: " + numberArgs);
-			switch (comando) {
-                
+            String t = input.nextLine();            
+            String args[] = t.split(" ");
+            int numberArgs = args.length;
+            if (numberArgs >= 1){    
+                comando = args[0];
+            }else {
+                comando = "null";
+            }
+            if (numberArgs == 2){
+                parametro = args[1];
+            }else if (numberArgs == 3){
+                parametro = args[1];
+                try {
+                    complemento = Integer.parseInt(args[2]);
+                } catch (Exception e) {
+                    System.out.println("Parametro inválido.");
+                    comando = "help";
+                    parametro = args[0];
+                }
+            }
+            switch (comando) {
+                // vai de uma sala para outra.
                 case "cd":
                     exit(complemento, player.getPosicao());
+                    break;
+                // fechar porta.
+                case "close":
+                    closeDoor(complemento);
                     break;
                 // Mostra Arena;
                 case "lsmap":
                     showMap();
                     break;
+                // removendo intens da bag.
+                case "del":
+                    drop(parametro, complemento);
+                    break;
+                case "help":
+                    help(parametro);
+                    break;
+                // mostra itens da sala.
+                case "ls":
+                    view();
+                    break;
                 // mostra portas em uma sala.
-                case "showdoors":
+                case "lsdoors":
                     System.out.println("Portas...");
                     mapaSalas[player.getPosicao()].portas.showDoors();
                     break;
@@ -576,76 +630,38 @@ public class Arena extends Thread {
                 case "lsme":
                     player.showMe();
                     break;
-                // mostra itens da sala.
-                case "ls":
-                    view();
+                // movendo para item.
+                case "moveto":                    
+                    moveTo(parametro, complemento);
                     break;
-                case "help": 
-					help(parametro);
-                    break;
-                case "quit":
-                    
+                case "quit":                    
                     if(player.getPosicao() == 18){
-                        
-                        System.out.println("Very good, litle boy very good....");
+                        System.out.println("Very good, litle boy, very good....");
                     }else{
-                        
                         System.err.println("This Game is OVER!!!");
                     }
-                     System.exit(0);
+                    System.exit(0);
                     break;
-                // Arrmessa machado
+                // Arremessa machado
                 case "rm":
-                    
                     if(player.bag.getMachado() > 0){
-                        
-                        parametro = input.next();
                         mapaSalas[player.getPosicao()].troll.removeTrolls(parametro);
                         player.bag.removeMachado(1);
                     }else{
                         
-                        System.out.println("Machados zeroados...");
+                        System.out.println("Machados zerados...");
                     }
-                    break;
-                // fechar porta.
-                case "close":
-                    
-                    complemento = input.nextInt();
-                    closeDoor(complemento);
-                    break;
-                // movendo para item.
-                case "moveto":
-                    parametro = input.next();
-                    if("door".equals(parametro)){
-                        
-                        complemento = input.nextInt();
-                    }
-                    moveTo(parametro, complemento);
                     break;
                 // Inserindo Itens na bag do player.
-                case "take":
-                    parametro = input.next();
-                    if(!"gold".equals(parametro) && !"diam".equals(parametro)){
-                        
-                        complemento = input.nextInt();
-                    }
+                case "take":                  
                     pickup(parametro, complemento);
                     break;
-                // removendo intens da bag.
-                case "del":
-                    parametro = input.next();
-                    if(!"gold".equals(parametro) && !"diam".equals(parametro)){
-                        
-                        complemento = input.nextInt();
-                    }
-                    dropls
-					(parametro, complemento);
+                case "null":
                     break;
                 default:
                     System.out.println("Comando não Encontrado...");
                     break;
-            }
-            limpaBuffer = input.nextLine();
+            }            
             moveTrolls();
         }
     }

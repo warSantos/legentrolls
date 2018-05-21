@@ -1,7 +1,7 @@
 all:
-	mkdir -p build
-	javac -d ./build ./src/*/*.java
+	javac -d ./ ./src/*/*.java
 	cp -r nomes build/
-	gcc src/run.c -o build/run
+run:
+	java lengentrolls.LegenTrolls
 clean:
-	rm -rf build
+	rm -rf legentrolls

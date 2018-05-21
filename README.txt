@@ -1,8 +1,4 @@
 # Para compilar e executar.
 
 make 
-cd build
-./run
-
-
-
+java legentrolls.LegenTrolls
