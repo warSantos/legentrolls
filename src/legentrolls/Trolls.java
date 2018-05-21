@@ -45,13 +45,13 @@ public class Trolls {
                 
                 if(nome.equalsIgnoreCase(getNome(i))){
               
-                    System.out.println(getNome(i) + "'s dead.");
+                    System.out.println("Você matou o troll "+getNome(i)+"!");
                     setNome("-", i);
                     this.qtdeTrolls--;
                     return;               
                 }
             }
-            System.out.println("Eeeerrrouuuuuu...");
+            System.out.println("Não existe troll '"+nome+"' nessa sala.");
         }else{
             
             System.out.println("Não há trolls no local.");
@@ -60,7 +60,7 @@ public class Trolls {
      
     public void listaTrolls() {
         
-        System.out.println("Número de Trolls " + getQtdeTrolls() + ".");
+        System.out.println("Número de trolls: " + getQtdeTrolls() + ".");
         for(int i = 0; i < 5; i++){
             
             if(!"-".equals(getNome(i))){

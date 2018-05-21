@@ -74,7 +74,7 @@ public class Itens {
     public int insereMachado(int qtdeMachado){
         
         if(getQtdeItens() < 5){
-            System.out.println("Pegando machado...");
+            System.out.println("Você pegou um machado.");
             if(getQtdeItens() + qtdeMachado <= 5){
 
                 setMachado(getMachado() + qtdeMachado);
@@ -107,7 +107,7 @@ public class Itens {
             }
         }else{
             
-            println("Você não possui machados para remover");
+            println("Você não possui machados para remover.");
         }
     }
     
@@ -120,7 +120,7 @@ public class Itens {
         
         if(getQtdeItens() < 5){
             
-            System.out.println("Pegando poção...");
+            System.out.println("Você pegou uma poção.");
             if(getQtdeItens() + qtdePocao <= 5){
                 
                 setQtdePocao(getQtdePocao() + qtdePocao); 
@@ -154,7 +154,7 @@ public class Itens {
                 
         }else{
             
-            println("Você não possui poção para remover");
+            println("Você não possui nenhuma poção para remover.");
         }
     }
     
@@ -162,7 +162,7 @@ public class Itens {
         
         if(getQtdeItens() < 5){
             
-            System.out.println("Pegando chave...");    
+            System.out.println("Você pegou uma chave.");    
             if(getQtdeItens() + qtdeChave <= 5){
                 
                 setQtdeChave(getQtdeChave() + qtdeChave); 
@@ -196,7 +196,7 @@ public class Itens {
                 
         }else{
             
-            println("Você não possui chaves para remover");
+            println("Você não possui nenhuma chave para remover.");
         }
     }
     

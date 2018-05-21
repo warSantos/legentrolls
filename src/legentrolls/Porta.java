@@ -51,10 +51,10 @@ public class Porta {
             
             if(getEstado(i) == 1){
                 
-                System.out.println(" Porta para sala: " + getPorta(i) + " Aberta.");
+                System.out.println(" Porta para a sala " + getPorta(i) + " foi aberta.");
             }else if(getEstado(i) == 2){
                 
-                System.out.println(" Porta para sala: " + getPorta(i) + " Fechada.");
+                System.out.println(" Porta para a sala " + getPorta(i) + " foi fechada.");
             }
         }
     }

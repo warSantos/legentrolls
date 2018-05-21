@@ -76,14 +76,14 @@ public class Personagem {
             
             bag.removePocao(1);
             System.out.println("");
-            System.err.println("Ataque troll Bloqueado...");
+            System.err.println("Ataque de troll bloqueado!");
             System.out.println("");
             
         }else if(bag.getQtdeItens() > 0){
             
             System.out.println("");
-            System.err.println("Dano sofrido...");
-            System.err.println("Todos os itens foram perdidos...");
+            System.err.println("Você foi ferido!");
+            System.err.println("Todos seus itens foram perdidos!");
             System.out.println("");
             bag.setMachado(0);
             bag.setQtdeDiam(0);
@@ -93,7 +93,8 @@ public class Personagem {
         
         }else{
             
-            System.out.println("This Game is over... hahahahahahah");
+            System.out.println("Você morreu.");
+			System.out.println("FIM DE JOGO - DERROTA");
             System.exit(0);           
         }
     }
@@ -101,7 +102,7 @@ public class Personagem {
     public void showMe(){
         
         System.out.println("");
-        System.out.println("Itens na bag " + bag.qtdeItens);
+        System.out.println("Itens no inventário: " + bag.qtdeItens);
         System.out.println("Machados: " + bag.getMachado());
         System.out.println("Diamante: " + bag.getQtdeDiam());
         System.out.println("Ouro: " + bag.getQtdeOuro());
