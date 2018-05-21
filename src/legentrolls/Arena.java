@@ -146,24 +146,83 @@ public class Arena extends Thread {
         System.out.println("");
     }
 
-    public void help() {
+    public void help(String parametro) {
         
-        System.out.println("");
-        System.out.println("Comandos...");
-        System.out.println("");
-        System.out.println("cd");
-        System.out.println("close");
-        System.out.println("del");
-        System.out.println("help");
-        System.out.println("ls");
-        System.out.println("lsdoors");
-        System.out.println("lsmap");
-        System.out.println("lsme");
-        System.out.println("moveto");
-        System.out.println("quit (Surrender)");
-        System.out.println("rm (kill)");
-        System.out.println("take");
-        System.out.println("");
+		switch (parametro){
+			
+			case "cd":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "close":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: close door 1");	
+				break;
+			case "del":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "ls":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "lsdoors":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "lsmap":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "lsme":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "moveto":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "quit":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "rm":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			case "take":
+				System.out.println("Função: sair de uma sala.");	
+				System.out.println("Requisitos: É necessário o player estar próximo a uma porta.");
+				System.out.println("Exemplo: cd");	
+				break;
+			default :
+				System.out.println("");
+				System.out.println("Comandos...");
+				System.out.println("");
+				System.out.println("cd");
+				System.out.println("close");
+				System.out.println("del");
+				System.out.println("help");
+				System.out.println("ls");
+				System.out.println("lsdoors");
+				System.out.println("lsmap");
+				System.out.println("lsme");
+				System.out.println("moveto");
+				System.out.println("quit (Surrender)");
+				System.out.println("rm (kill)");
+				System.out.println("take");
+				System.out.println("");
+			}
     }
     
     public void exit(int novaSala, int salaAntiga){
@@ -474,6 +533,7 @@ public class Arena extends Thread {
             }
         }
     }
+	
     public void idCmd() {
         
         // Construindo arena.
@@ -486,7 +546,7 @@ public class Arena extends Thread {
         System.out.println("Finalizando configurações extras...");
         System.out.println("Pronto para iniciar (S/n)?: ");
         limpaBuffer = input.next();
-        while (true) {
+		while (true) {
             
             if(mapaSalas[player.getPosicao()].troll.getQtdeTrolls() > 0 
                     && mapaSalas[player.getPosicao()].getAtivarAtaque() == 1){
@@ -495,8 +555,10 @@ public class Arena extends Thread {
             }
             
             System.out.print("> ");
-            comando = input.next();
-            switch (comando) {
+            String args[] = input.next();
+           	int numberArgs = args.length();
+			System.out.println("numberArgs: " + numberArgs);
+			switch (comando) {
                 
                 case "cd":
                     exit(complemento, player.getPosicao());
@@ -518,8 +580,8 @@ public class Arena extends Thread {
                 case "ls":
                     view();
                     break;
-                case "help":
-                    help();
+                case "help": 
+					help(parametro);
                     break;
                 case "quit":
                     
@@ -576,7 +638,8 @@ public class Arena extends Thread {
                         
                         complemento = input.nextInt();
                     }
-                    drop(parametro, complemento);
+                    dropls
+					(parametro, complemento);
                     break;
                 default:
                     System.out.println("Comando não Encontrado...");

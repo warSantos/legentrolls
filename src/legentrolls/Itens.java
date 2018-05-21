@@ -219,7 +219,7 @@ public class Itens {
         setMachado(numero);
         
         // Gerando chaves.
-        numero = gerador.nextInt(2);
+        numero = gerador.nextInt(2) + 1;
         setQtdeChave(numero);
     }   
 }
