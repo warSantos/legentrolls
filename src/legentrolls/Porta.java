@@ -2,8 +2,24 @@ package legentrolls;
 
 public class Porta {
     
-    int portas[];
-    int estado[];
+    private int portas[];
+    private int estado[];
+
+    public int[] getPortas() {
+        return portas;
+    }
+
+    public void setPortas(int[] portas) {
+        this.portas = portas;
+    }
+
+    public int[] getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int[] estado) {
+        this.estado = estado;
+    }
 
     public Porta() {
         

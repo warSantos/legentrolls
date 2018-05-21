@@ -5,12 +5,12 @@ import java.util.Random;
 
 public class Itens {
     
-    int qtdeOuro;
-    int qtdeDiam;
-    int machado;
-    int qtdeItens;
-    int qtdePocao;
-    int qtdeChave;
+    private int qtdeOuro;
+    private int qtdeDiam;
+    private int machado;
+    private int qtdeItens;
+    private int qtdePocao;
+    private int qtdeChave;
     
     // Métodos getters padrões.
     
