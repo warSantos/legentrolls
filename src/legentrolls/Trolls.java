@@ -8,16 +8,16 @@ import java.util.Scanner;
 
 public class Trolls {
 
+    private String[] nome = new String[5];
+    private int qtdeTrolls;
+    
     public String[] getNome() {
         return nome;
     }
 
     public void setNome(String[] nome) {
         this.nome = nome;
-    }
-    
-    private String[] nome = new String[5];
-    private int qtdeTrolls;
+    }        
 
     public String getNome(int pos) {
         return this.nome[pos];

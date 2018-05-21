@@ -46,7 +46,7 @@ public class Mapa extends Thread {
         System.out.println("Finalizando construção das salas...");
     }
 
-    public void constroiArena() {
+    public void constroiMapa() {
 
         player.construirPlayer();
         mapaSalas[15].setVisitado(1);
@@ -581,7 +581,7 @@ public class Mapa extends Thread {
     public void idCmd() {
         
         // Construindo arena.
-        constroiArena();
+        constroiMapa();
         String comando = null, parametro = "help", limpaBuffer = null;
         int complemento = -1;
         Scanner input;
