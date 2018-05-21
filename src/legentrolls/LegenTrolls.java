@@ -9,7 +9,7 @@ public class LegenTrolls {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Iniciando jogo...");   
-        Arena game = new Arena();
+        Mapa game = new Mapa();
         game.idCmd();
     }
 }

@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Arena extends Thread {
+public class Mapa extends Thread {
     
     private Sala[] mapaSalas;
     private Personagem player;
@@ -27,7 +27,7 @@ public class Arena extends Thread {
         this.player = player;
     }
 
-    public Arena() {
+    public Mapa() {
         
         this.mapaSalas = new Sala[20];
         for (int i = 0; i < 20; ++i) {
@@ -39,7 +39,6 @@ public class Arena extends Thread {
     public void constroiSalas() throws IOException {
 
         /* Capturando arquivo com nomes de trolls */
-        Scanner input = new Scanner(System.in);
         for (int j = 0; j < 20; j++) {
             mapaSalas[j].getTroll().criaTrolls();
             mapaSalas[j].getBau().criarItens();
@@ -123,7 +122,7 @@ public class Arena extends Thread {
         try {
             constroiSalas();
         } catch (IOException ex) {
-            Logger.getLogger(Arena.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -528,7 +527,7 @@ public class Arena extends Thread {
                     System.err.println("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
                     Thread.sleep(tempoDeResposta);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(Arena.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 // se ainda exixtir trolls na sala
                 if (tempoID == player.tempo && mapaSalas[numSala].jogadorEsta == 1
@@ -628,7 +627,7 @@ public class Arena extends Thread {
                 case "close":
                     closeDoor(complemento);
                     break;
-                // Mostra Arena;
+                // Mostra Mapa;
                 case "lsmap":
                     showMap();
                     break;
