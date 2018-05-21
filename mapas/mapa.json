@@ -1,0 +1,29 @@
+{
+	"numeroSalas": 22,
+	"entrada": 0,
+	"saida": 21,
+	"vetorSalas":[
+		{"conexoes":[1]},
+		{"conexoes":[2,6]},
+		{"conexoes":[1,3]},
+		{"conexoes":[2,8]},
+		{"conexoes":[21,5]},
+		{"conexoes":[10,4]},
+		{"conexoes":[1,7]},
+		{"conexoes":[12,6]},
+		{"conexoes":[13,3]},
+		{"conexoes":[10]},
+		{"conexoes":[9,15,5]},
+		{"conexoes":[12,16]},
+		{"conexoes":[11,7,13]},
+		{"conexoes":[12,8]},
+		{"conexoes":[15,19]},
+		{"conexoes":[14,10,20]},
+		{"conexoes":[11,17]},
+		{"conexoes":[16,18]},
+		{"conexoes":[19,17]},
+		{"conexoes":[14,18]},
+		{"conexoes":[15]},
+		{"conexoes":[4]}
+	]
+}
