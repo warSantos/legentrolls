@@ -17,85 +17,204 @@ import java.io.IOException;
  */
 public class InterfaceUI extends javax.swing.JFrame {
         private Font customFont;
+        private static InterfaceUI interfaceUI;
+        
         public InterfaceUI() {
                 configurarVisualWindows();
                 configurarFontePersonalizada();
                 initComponents();
         }
+        
+        public static synchronized InterfaceUI getInstance(){
+                if(interfaceUI == null){
+                        interfaceUI = new InterfaceUI();
+                }
+                return interfaceUI;
+        }
         @SuppressWarnings("unchecked")
         // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
         private void initComponents() {
 
-                jPanel1 = new javax.swing.JPanel();
-                jPanel2 = new javax.swing.JPanel();
-                jPanel3 = new javax.swing.JPanel();
-                jLabel1 = new javax.swing.JLabel();
+                mainPanel = new javax.swing.JPanel();
+                widgetPanel = new javax.swing.JPanel();
+                itemPanel = new javax.swing.JPanel();
+                goldPanel = new javax.swing.JPanel();
+                contadorPanel = new javax.swing.JPanel();
+                contador = new javax.swing.JLabel();
+                saidaPanel = new javax.swing.JPanel();
+                jScrollPane1 = new javax.swing.JScrollPane();
+                saidaTextArea = new javax.swing.JTextArea();
+                entradaPanel = new javax.swing.JPanel();
+                entradaTextField = new javax.swing.JTextField();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setBackground(new java.awt.Color(0, 0, 0));
 
-                javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-                jPanel1.setLayout(jPanel1Layout);
-                jPanel1Layout.setHorizontalGroup(
-                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 129, Short.MAX_VALUE)
+                mainPanel.setBackground(new java.awt.Color(0, 0, 0));
+                mainPanel.setForeground(new java.awt.Color(0, 255, 0));
+
+                widgetPanel.setBackground(new java.awt.Color(0, 0, 0));
+                widgetPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+                widgetPanel.setForeground(new java.awt.Color(0, 255, 0));
+
+                itemPanel.setBackground(new java.awt.Color(0, 0, 0));
+                itemPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 1, true));
+
+                javax.swing.GroupLayout itemPanelLayout = new javax.swing.GroupLayout(itemPanel);
+                itemPanel.setLayout(itemPanelLayout);
+                itemPanelLayout.setHorizontalGroup(
+                        itemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 243, Short.MAX_VALUE)
                 );
-                jPanel1Layout.setVerticalGroup(
-                        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                itemPanelLayout.setVerticalGroup(
+                        itemPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 78, Short.MAX_VALUE)
                 );
 
-                javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-                jPanel2.setLayout(jPanel2Layout);
-                jPanel2Layout.setHorizontalGroup(
-                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 121, Short.MAX_VALUE)
+                goldPanel.setBackground(new java.awt.Color(0, 0, 0));
+                goldPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 1, true));
+
+                javax.swing.GroupLayout goldPanelLayout = new javax.swing.GroupLayout(goldPanel);
+                goldPanel.setLayout(goldPanelLayout);
+                goldPanelLayout.setHorizontalGroup(
+                        goldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 455, Short.MAX_VALUE)
                 );
-                jPanel2Layout.setVerticalGroup(
-                        jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 0, Short.MAX_VALUE)
+                goldPanelLayout.setVerticalGroup(
+                        goldPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 78, Short.MAX_VALUE)
                 );
 
-                jLabel1.setFont(customFont);
-                jLabel1.setText("00:00");
+                contadorPanel.setBackground(new java.awt.Color(0, 0, 0));
+                contadorPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 1, true));
 
-                javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-                jPanel3.setLayout(jPanel3Layout);
-                jPanel3Layout.setHorizontalGroup(
-                        jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
+                contador.setBackground(new java.awt.Color(0, 0, 0));
+                contador.setFont(customFont);
+                contador.setForeground(new java.awt.Color(0, 255, 0));
+
+                javax.swing.GroupLayout contadorPanelLayout = new javax.swing.GroupLayout(contadorPanel);
+                contadorPanel.setLayout(contadorPanelLayout);
+                contadorPanelLayout.setHorizontalGroup(
+                        contadorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contadorPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                                .addContainerGap())
+                                .addComponent(contador, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
                 );
-                jPanel3Layout.setVerticalGroup(
-                        jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
+                contadorPanelLayout.setVerticalGroup(
+                        contadorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(contador, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                );
+
+                javax.swing.GroupLayout widgetPanelLayout = new javax.swing.GroupLayout(widgetPanel);
+                widgetPanel.setLayout(widgetPanelLayout);
+                widgetPanelLayout.setHorizontalGroup(
+                        widgetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 856, Short.MAX_VALUE)
+                        .addGroup(widgetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(widgetPanelLayout.createSequentialGroup()
+                                        .addComponent(itemPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(goldPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(contadorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                );
+                widgetPanelLayout.setVerticalGroup(
+                        widgetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 80, Short.MAX_VALUE)
+                        .addGroup(widgetPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(itemPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(goldPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(contadorPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+
+                saidaPanel.setBackground(new java.awt.Color(0, 0, 0));
+                saidaPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 1, true));
+                saidaPanel.setForeground(new java.awt.Color(0, 255, 0));
+
+                jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
+                jScrollPane1.setBorder(null);
+
+                saidaTextArea.setBackground(new java.awt.Color(0, 0, 0));
+                saidaTextArea.setColumns(20);
+                saidaTextArea.setForeground(new java.awt.Color(0, 255, 0));
+                saidaTextArea.setRows(5);
+                saidaTextArea.setBorder(null);
+                jScrollPane1.setViewportView(saidaTextArea);
+
+                javax.swing.GroupLayout saidaPanelLayout = new javax.swing.GroupLayout(saidaPanel);
+                saidaPanel.setLayout(saidaPanelLayout);
+                saidaPanelLayout.setHorizontalGroup(
+                        saidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1)
+                );
+                saidaPanelLayout.setVerticalGroup(
+                        saidaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                );
+
+                entradaPanel.setBackground(new java.awt.Color(0, 0, 0));
+                entradaPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 1, true));
+                entradaPanel.setForeground(new java.awt.Color(0, 255, 0));
+
+                entradaTextField.setBackground(new java.awt.Color(0, 0, 0));
+                entradaTextField.setForeground(new java.awt.Color(0, 255, 0));
+                entradaTextField.setText(">");
+                entradaTextField.setBorder(null);
+
+                javax.swing.GroupLayout entradaPanelLayout = new javax.swing.GroupLayout(entradaPanel);
+                entradaPanel.setLayout(entradaPanelLayout);
+                entradaPanelLayout.setHorizontalGroup(
+                        entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 858, Short.MAX_VALUE)
+                        .addGroup(entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(entradaPanelLayout.createSequentialGroup()
+                                        .addComponent(entradaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                );
+                entradaPanelLayout.setVerticalGroup(
+                        entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addGroup(entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entradaPanelLayout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(entradaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                );
+
+                javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+                mainPanel.setLayout(mainPanelLayout);
+                mainPanelLayout.setHorizontalGroup(
+                        mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mainPanelLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
+                                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(saidaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(widgetPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(entradaPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+                mainPanelLayout.setVerticalGroup(
+                        mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                                .addComponent(widgetPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saidaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(entradaPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())
+                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(46, 46, 46))
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                 );
 
                 pack();
@@ -138,19 +257,31 @@ public class InterfaceUI extends javax.swing.JFrame {
             }
         }
         
+        public static void escreverSaida(String texto){
+                InterfaceUI.getInstance().saidaTextArea.append(texto+"\n");
+        }
+        
         public void iniciarUI() {
             java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
-                            InterfaceUI interfaceUI = new InterfaceUI();
+                            InterfaceUI interfaceUI = InterfaceUI.getInstance();
+                            interfaceUI.setTitle("LegenTrolls");
                             interfaceUI.setVisible(true);
                     }
             });
         }
 
         // Variables declaration - do not modify//GEN-BEGIN:variables
-        private javax.swing.JLabel jLabel1;
-        private javax.swing.JPanel jPanel1;
-        private javax.swing.JPanel jPanel2;
-        private javax.swing.JPanel jPanel3;
+        public javax.swing.JLabel contador;
+        private javax.swing.JPanel contadorPanel;
+        private javax.swing.JPanel entradaPanel;
+        public javax.swing.JTextField entradaTextField;
+        public javax.swing.JPanel goldPanel;
+        public javax.swing.JPanel itemPanel;
+        private javax.swing.JScrollPane jScrollPane1;
+        private javax.swing.JPanel mainPanel;
+        public javax.swing.JPanel saidaPanel;
+        public javax.swing.JTextArea saidaTextArea;
+        private javax.swing.JPanel widgetPanel;
         // End of variables declaration//GEN-END:variables
 }
