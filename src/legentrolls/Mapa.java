@@ -46,9 +46,9 @@ public class Mapa extends Thread {
         System.out.println("Finalizando construção das salas...");
     }
 
-    public void constroiMapa() {
+    public void buildMapa() {
 
-        player.construirPlayer();
+        player.buildPlayer();
         mapaSalas[15].setVisitado(1);
         mapaSalas[15].setJogadorEsta(1);
         /* Iniciando portas */
@@ -126,7 +126,7 @@ public class Mapa extends Thread {
         }
     }
     
-    public void showMap(){
+    public void lsMap(){
         
         System.out.println("");
         System.out.println("");
@@ -179,13 +179,13 @@ public class Mapa extends Thread {
                         "possuir ao menos uma chave em sua mochila.");
                 System.out.println("Exemplo: close");
                 break;
-            case "del":
+            case "rm":
                 System.out.println("\nFunção: remover um item da mochila.");
                 System.out.println("Parâmetros: axe, diam, gold, key e potion.");
                 System.out.println("Requisitos: para os intens axe, key e potion é necessário informar\n" + 
                         "a quantidade desejada.");
-				System.out.println("Exemplo: del gold");
-                System.out.println("Exemplo: del axe 2");
+				System.out.println("Exemplo: rm gold");
+                System.out.println("Exemplo: rm axe 2");
                 break;
             case "ls":
                 System.out.println("\nFunção: exibir as configurações da sala.");
@@ -222,12 +222,12 @@ public class Mapa extends Thread {
                 System.out.println("Requisitos: não possui requisitos.");
                 System.out.println("Exemplo: cd");
                 break;
-            case "rm":
+            case "kill":
                 System.out.println("\nFunção: mata um troll.");
                 System.out.println("Parâmetros: Nomes");
                 System.out.println("Requisitos:\n\t1. O player deve possuir pelo menos um machados em sua mochila.");
                 System.out.println("\t2. Deve-se indicar o nome do troll alvo.");
-                System.out.println("\tExemplo: rm Mallandro");
+                System.out.println("\tExemplo: kill Mallandro");
                 break;
             case "take":
                 System.out.println("\nFunção: pega um item presente na sala e coloca na mochila.");
@@ -249,14 +249,14 @@ public class Mapa extends Thread {
                 System.out.println("");
                 System.out.println("cd");
                 System.out.println("close");
-                System.out.println("del");
                 System.out.println("help");
+                System.out.println("kill");
                 System.out.println("ls");
                 System.out.println("lsdoors");
                 System.out.println("lsmap");
                 System.out.println("lsme");
                 System.out.println("moveto");
-                System.out.println("quit");
+                System.out.println("quit");                
                 System.out.println("rm");
                 System.out.println("take\n");
                 System.out.println("Todos os comandos possuem manuais com maiores detalhes. Para consultar\n" +
@@ -270,7 +270,7 @@ public class Mapa extends Thread {
         
         if(player.getQualItem() == 10){
             
-            player.setposicao(novaSala);
+            player.setPosicao(novaSala);
             mapaSalas[salaAntiga].setJogadorEsta(0);
             System.out.println("Saindo da sala...");
             mapaSalas[novaSala].setVisitado(1);
@@ -284,7 +284,7 @@ public class Mapa extends Thread {
             if(player.getBag().getQtdeChave() > 0){
                 
                 player.getBag().removeChave(1);
-                player.setposicao(novaSala);
+                player.setPosicao(novaSala);
                 mapaSalas[salaAntiga].setJogadorEsta(0);
                 System.out.println("Abrindo Porta...");
                 mapaSalas[salaAntiga].getPortas().alteraEstado(novaSala, 1);
@@ -387,14 +387,14 @@ public class Mapa extends Thread {
         }
     }
     
-    public void pickup(String parametro, int complemento){
+    public void take(String parametro, int complemento){
         
         int qtdeItemPegos = 0;
         switch (parametro) {
             // pegar chave.
             case "key":
 
-                if (player.confirmaPickup(1) == 1){
+                if (player.tookConfirm(1) == 1){
                 
                     if(verificaQtde(mapaSalas[player.getPosicao()].getBau().getQtdeChave(), complemento) == 1) {
 
@@ -413,7 +413,7 @@ public class Mapa extends Thread {
             // pegar diamante.
             case "diam":
 
-                if (player.confirmaPickup(2) == 1) {
+                if (player.tookConfirm(2) == 1) {
 
                     player.getBag().setQtdeDiam(mapaSalas[player.getPosicao()].getBau().getQtdeDiam() + player.getBag().getQtdeDiam());
                     player.setQualItem(0);
@@ -426,7 +426,7 @@ public class Mapa extends Thread {
             // pegar machado.
             case "axe":
                 
-                if (player.confirmaPickup(3) == 1) {
+                if (player.tookConfirm(3) == 1) {
                         
                     if(verificaQtde(mapaSalas[player.getPosicao()].getBau().getMachado(), complemento) == 1) {
 
@@ -445,7 +445,7 @@ public class Mapa extends Thread {
             // pegar ouro.
             case "gold":
 
-                if (player.confirmaPickup(4) == 1) {
+                if (player.tookConfirm(4) == 1) {
 
                     player.getBag().setQtdeOuro(mapaSalas[player.getPosicao()].getBau().getQtdeOuro() + player.getBag().getQtdeOuro());
                     player.setQualItem(0);
@@ -458,7 +458,7 @@ public class Mapa extends Thread {
             // pegar uma pocao.
             case "potion":
                 
-                if (player.confirmaPickup(5) == 1) {
+                if (player.tookConfirm(5) == 1) {
                         
                     if(verificaQtde(mapaSalas[player.getPosicao()].getBau().getQtdePocao(), complemento) == 1) {
 
@@ -516,7 +516,7 @@ public class Mapa extends Thread {
         new Thread() {
             @Override
             public void run() {
-                /*
+
                 Random gerador = new Random();
                 int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
                 int numSala = player.getPosicao();
@@ -530,13 +530,13 @@ public class Mapa extends Thread {
                     Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 // se ainda exixtir trolls na sala
-                if (tempoID == player.tempo && mapaSalas[numSala].jogadorEsta == 1
-                        && mapaSalas[numSala].troll.getQtdeTrolls() > 0) {
+                if (tempoID == player.getTempo() && mapaSalas[numSala].getJogadorEsta() == 1
+                      && mapaSalas[numSala].getTroll().getQtdeTrolls() > 0) {
 
-                    player.perdeItens();
+                    player.lostItens();
                     entrarSala(tempoID);
                 }
-			*/
+
             }
         }.start();
     }
@@ -581,7 +581,7 @@ public class Mapa extends Thread {
     public void idCmd() {
         
         // Construindo arena.
-        constroiMapa();
+        buildMapa();
         String comando = null, parametro = "help", limpaBuffer = null;
         int complemento = -1;
         Scanner input;
@@ -629,10 +629,10 @@ public class Mapa extends Thread {
                     break;
                 // Mostra Mapa;
                 case "lsmap":
-                    showMap();
+                    lsMap();
                     break;
                 // removendo intens da bag.
-                case "del":
+                case "rm":
                     drop(parametro, complemento);
                     break;
                 case "help":
@@ -649,7 +649,7 @@ public class Mapa extends Thread {
                     break;
                 // mostra itens na bag e sala atual.
                 case "lsme":
-                    player.showMe();
+                    player.lsMe();
                     break;
                 // movendo para item.
                 case "moveto":                    
@@ -661,7 +661,7 @@ public class Mapa extends Thread {
                     System.exit(0);
                     break;
                 // Arremessa machado
-                case "rm":
+                case "kill":
                     if(player.getBag().getMachado() > 0){
                         mapaSalas[player.getPosicao()].getTroll().removeTrolls(parametro);
                         player.getBag().removeMachado(1);
@@ -672,7 +672,7 @@ public class Mapa extends Thread {
                     break;
                 // Inserindo Itens na bag do player.
                 case "take":                  
-                    pickup(parametro, complemento);
+                    take(parametro, complemento);
                     break;
                 case "null":
                     break;

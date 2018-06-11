@@ -42,7 +42,7 @@ public class Personagem {
         return posicao;
     }
 
-    public void setposicao(int posicao) {
+    public void setPosicao(int posicao) {
         this.posicao = posicao;
     }
 
@@ -54,7 +54,7 @@ public class Personagem {
         this.qualItem = qualItem;
     }
 
-    public int confirmaPickup(int codigoItem) {
+    public int tookConfirm(int codigoItem) {
 
         if (codigoItem == getQualItem()) {
 
@@ -63,10 +63,10 @@ public class Personagem {
         return 0;
     }
 
-    public void construirPlayer() {
+    public void buildPlayer() {
 
         /* Iniciando coordenadas do player para entrada */
-        setposicao(15);
+        setPosicao(15);
 
         /* Iniciando Intens do player */
         bag.setMachado(2);
@@ -78,7 +78,7 @@ public class Personagem {
 
     }
 
-    public void perdeItens() {
+    public void lostItens() {
 
         if (bag.getQtdePocao() > 0) {
 
@@ -106,7 +106,7 @@ public class Personagem {
         }
     }
 
-    public void showMe() {
+    public void lsMe() {
 
         System.out.println("");
         System.out.println("Itens no inventário: " + getBag().getQtdeItens());

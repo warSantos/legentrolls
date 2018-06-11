@@ -1,5 +1,5 @@
 all:
-	javac -d ./ ./src/*/*.java
+	javac -d ./ ./src/legentrolls/*.java
 	cp -r nomes build/
 run:
 	java lengentrolls.LegenTrolls
