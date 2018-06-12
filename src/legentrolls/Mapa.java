@@ -135,9 +135,9 @@ public class Mapa extends Thread {
             for(int j = 0; j < 5;++j){
                 if(mapaSalas[(i * 5) + j].getVisitado() == 1){
                     if(((i * 5) + j) > 9){
-                        System.out.print("  | " + ((i * 5) + j) +"   |  "); 
+                        InterfaceUI.escreverSaida("  | " + ((i * 5) + j) +"   |  "); 
                     }else{
-                        System.out.print("  |  " + ((i * 5) + j) +"   |  ");
+                        InterfaceUI.escreverSaida("  |  " + ((i * 5) + j) +"   |  ");
                     }
                 }
             }
@@ -274,6 +274,8 @@ public class Mapa extends Thread {
             player.setPosicao(novaSala);
             mapaSalas[salaAntiga].setJogadorEsta(0);
             InterfaceUI.escreverSaida("Saindo da sala...");
+             //Matar thread aqui xdddd
+             InterfaceUI.getInstance().zerarContador();
             mapaSalas[novaSala].setVisitado(1);
             mapaSalas[salaAntiga].setJogadorEsta(0);
             mapaSalas[novaSala].setJogadorEsta(1);
@@ -291,6 +293,7 @@ public class Mapa extends Thread {
                 mapaSalas[salaAntiga].getPortas().alteraEstado(novaSala, 1);
                 mapaSalas[novaSala].getPortas().alteraEstado(salaAntiga, 1);
                 InterfaceUI.escreverSaida("Saindo...");
+               
                 mapaSalas[novaSala].setJogadorEsta(1);
                 mapaSalas[novaSala].setVisitado(1);
                 player.setTempo();
@@ -344,7 +347,7 @@ public class Mapa extends Thread {
                     break;
                 default:    
                     // porta inexistente.
-                    System.err.println("Esta porta não existe.");
+                    InterfaceUI.escreverSaida("Esta porta não existe.");
                     break;
             }
         } else {
@@ -408,7 +411,7 @@ public class Mapa extends Thread {
                     }
                 } else {
 
-                    System.err.println("Não há chaves perto de você.");
+                    InterfaceUI.escreverSaida("Não há chaves perto de você.");
                 }
                 break;
             // pegar diamante.
@@ -421,7 +424,7 @@ public class Mapa extends Thread {
                     mapaSalas[player.getPosicao()].getBau().setQtdeDiam(0);
                 } else {
 
-                    System.err.println("Não há diamante perto de você.");
+                    InterfaceUI.escreverSaida("Não há diamante perto de você.");
                 }
                 break;
             // pegar machado.
@@ -440,7 +443,7 @@ public class Mapa extends Thread {
                     }
                 } else {
 
-                    System.err.println("Não há machados perto de você.");
+                    InterfaceUI.escreverSaida("Não há machados perto de você.");
                 }
                 break;
             // pegar ouro.
@@ -453,7 +456,7 @@ public class Mapa extends Thread {
                     mapaSalas[player.getPosicao()].getBau().setQtdeOuro(0);
                 } else {
 
-                    System.err.println("Não há ouro perto de você.");
+                    InterfaceUI.escreverSaida("Não há ouro perto de você.");
                 }
                 break;
             // pegar uma pocao.
@@ -472,7 +475,7 @@ public class Mapa extends Thread {
                     }
                 } else {
 
-                    System.err.println("Não há poções perto de você.");
+                    InterfaceUI.escreverSaida("Não há poções perto de você.");
                 }
                 break;
             default:
@@ -519,17 +522,16 @@ public class Mapa extends Thread {
             public void run() {
 
                 Random gerador = new Random();
-                int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
+                //int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
+                int tempoDeResposta = (15 * 1000);
                 int numSala = player.getPosicao();
 				
-                try {
 
-                    System.err.println("Sala " + player.getPosicao() + ".");
-                    System.err.println("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
-                    Thread.sleep(tempoDeResposta);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                    InterfaceUI.escreverSaida("Sala " + player.getPosicao() + ".");
+                    InterfaceUI.escreverSaida("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
+                    InterfaceUI.alterarContador(tempoDeResposta);   
+                    //Thread.sleep(tempoDeResposta);
+                
                 // se ainda exixtir trolls na sala
                 if (tempoID == player.getTempo() && mapaSalas[numSala].getJogadorEsta() == 1
                       && mapaSalas[numSala].getTroll().getQtdeTrolls() > 0) {
@@ -537,7 +539,6 @@ public class Mapa extends Thread {
                     player.lostItens();
                     entrarSala(tempoID);
                 }
-
             }
         }.start();
     }
@@ -579,110 +580,112 @@ public class Mapa extends Thread {
         }
     }
 	
-    public void idCmd() {
-        InterfaceUI.getInstance().contador.setText("00:01");
+    public void mensagemInicial() {
+        InterfaceUI.getInstance().contador.setText("00:00");
         InterfaceUI.getInstance().validate();
         // Construindo arena.
         buildMapa();
-        String comando = null, parametro = "help", limpaBuffer = null;
-        int complemento = -1;
-        Scanner input;
-        input = new Scanner(System.in);
-        help("help");
         InterfaceUI.escreverSaida("Finalizando configurações extras...");
-        InterfaceUI.escreverSaida("Pressione ENTER para iniciar o jogo.");
-        limpaBuffer = input.nextLine();
-        while (true) {
-            
-            if(mapaSalas[player.getPosicao()].getTroll().getQtdeTrolls() > 0 
-                    && mapaSalas[player.getPosicao()].getAtivarAtaque() == 1){
-                entrarSala(player.getTempo());
-                mapaSalas[player.getPosicao()].setAtivarAtaque(0);
-            }
-            System.out.print("> ");
-            String t = input.nextLine();            
-            String args[] = t.split(" ");
-            int numberArgs = args.length;
-            if (numberArgs >= 1){    
-                comando = args[0];
-            }else {
-                comando = "null";
-            }
-            if (numberArgs == 2){
-                parametro = args[1];
-            }else if (numberArgs == 3){
-                parametro = args[1];
-                try {
-                    complemento = Integer.parseInt(args[2]);
-                } catch (Exception e) {
-                    InterfaceUI.escreverSaida("Parâmetro inválido.");
-                    comando = "help";
-                    parametro = args[0];
-                }
-            }
-            switch (comando) {
-                // vai de uma sala para outra.
-                case "cd":
-                    exit(complemento, player.getPosicao());
-                    break;
-                // fechar porta.
-                case "close":
-                    closeDoor(complemento);
-                    break;
-                // Mostra Mapa;
-                case "lsmap":
-                    lsMap();
-                    break;
-                // removendo intens da bag.
-                case "rm":
-                    drop(parametro, complemento);
-                    break;
-                case "help":
-                    help(parametro);
-                    break;
-                // mostra itens da sala.
-                case "ls":
-                    view();
-                    break;
-                // mostra portas em uma sala.
-                case "lsdoors":
-                    InterfaceUI.escreverSaida("Portas...");
-                    mapaSalas[player.getPosicao()].getPortas().showDoors();
-                    break;
-                // mostra itens na bag e sala atual.
-                case "lsme":
-                    player.lsMe();
-                    break;
-                // movendo para item.
-                case "moveto":                    
-                    moveTo(parametro, complemento);
-                    break;
-                case "quit":                    
-                    System.err.println("Jogo ENCERRADO pelo usuário.");
-					System.err.println("FIM DE JOGO - DERROTA");
-                    System.exit(0);
-                    break;
-                // Arremessa machado
-                case "kill":
-                    if(player.getBag().getMachado() > 0){
-                        mapaSalas[player.getPosicao()].getTroll().removeTrolls(parametro);
-                        player.getBag().removeMachado(1);
-                    }else{
-                        
-                        InterfaceUI.escreverSaida("Você está sem machados.");
-                    }
-                    break;
-                // Inserindo Itens na bag do player.
-                case "take":                  
-                    take(parametro, complemento);
-                    break;
-                case "null":
-                    break;
-                default:
-                    InterfaceUI.escreverSaida("Comando não encontrado.");
-                    break;
-            }            
-            moveTrolls();
-        }
+        help("");
+        InterfaceUI.escreverSaida("PRESSIONE qualquer tecla para INICIAR o jogo...");
     }
+
+    public void idCmd(String t) {
+
+        String comando = null, parametro = "help", limpaBuffer = null;
+        //int complemento = -1;
+        
+        if (mapaSalas[player.getPosicao()].getTroll().getQtdeTrolls() > 0
+                && mapaSalas[player.getPosicao()].getAtivarAtaque() == 1) {
+            entrarSala(player.getTempo());
+            mapaSalas[player.getPosicao()].setAtivarAtaque(0);
+        }
+        //InterfaceUI.escreverSaida("> ");         
+        String args[] = t.split(" ");
+        int numberArgs = args.length;
+        if (numberArgs >= 1) {
+            comando = args[0];
+        } else {
+            comando = "null";
+        }
+        if (numberArgs == 2) {
+            parametro = args[1];
+        } else if (numberArgs == 3) {
+            parametro = args[1];
+            try {
+                InterfaceUI.getInstance().setComplemento(Integer.parseInt(args[2]));
+                
+            } catch (Exception e) {
+                InterfaceUI.escreverSaida("Parâmetro inválido.");
+                comando = "help";
+                parametro = args[0];
+            }
+        }
+
+        switch (comando) {
+            // vai de uma sala para outra.
+            case "cd":
+                //InterfaceUI.escreverSaida("Complemento informa a hora certa: são "+InterfaceUI.getInstance().getComplemento()+"horas.");
+                exit(InterfaceUI.getInstance().getComplemento(), player.getPosicao());
+                break;
+            // fechar porta.
+            case "close":
+                closeDoor(InterfaceUI.getInstance().getComplemento());
+                break;
+            // Mostra Mapa;
+            case "lsmap":
+                lsMap();
+                break;
+            // removendo intens da bag.
+            case "rm":
+                drop(parametro, InterfaceUI.getInstance().getComplemento());
+                break;
+            case "help":
+                help(parametro);
+                break;
+            // mostra itens da sala.
+            case "ls":
+                view();
+                break;
+            // mostra portas em uma sala.
+            case "lsdoors":
+                InterfaceUI.escreverSaida("Portas...");
+                mapaSalas[player.getPosicao()].getPortas().showDoors();
+                break;
+            // mostra itens na bag e sala atual.
+            case "lsme":
+                player.lsMe();
+                break;
+            // movendo para item.
+            case "moveto":
+                moveTo(parametro, InterfaceUI.getInstance().getComplemento());
+                break;
+            case "quit":
+                InterfaceUI.escreverSaida("Jogo ENCERRADO pelo usuário.");
+                InterfaceUI.escreverSaida("FIM DE JOGO - DERROTA");
+                System.exit(0);
+                break;
+            // Arremessa machado
+            case "kill":
+                if (player.getBag().getMachado() > 0) {
+                    mapaSalas[player.getPosicao()].getTroll().removeTrolls(parametro);
+                    player.getBag().removeMachado(1);
+                } else {
+
+                    InterfaceUI.escreverSaida("Você está sem machados.");
+                }
+                break;
+            // Inserindo Itens na bag do player.
+            case "take":
+                take(parametro, InterfaceUI.getInstance().getComplemento());
+                break;
+            case "null":
+                break;
+            default:
+                InterfaceUI.escreverSaida("Comando não encontrado.");
+                break;
+        }
+        moveTrolls();
+    }
+
 }

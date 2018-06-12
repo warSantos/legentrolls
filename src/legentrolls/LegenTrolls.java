@@ -8,8 +8,8 @@ public class LegenTrolls {
                  // TODO code application logic here
                 InterfaceUI.escreverSaida("Iniciando jogo...");
                 Mapa game = new Mapa();
-                InterfaceUI interfaceUI = new InterfaceUI();
+                InterfaceUI interfaceUI = new InterfaceUI(game);
                 interfaceUI.iniciarUI();
-                game.idCmd();
+                game.mensagemInicial();
         }
 }

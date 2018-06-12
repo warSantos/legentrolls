@@ -5,11 +5,17 @@
  */
 package interfaces.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.DefaultCaret;
+import legentrolls.Mapa;
 
 /**
  *
@@ -18,16 +24,42 @@ import java.io.IOException;
 public class InterfaceUI extends javax.swing.JFrame {
         private Font customFont;
         private static InterfaceUI interfaceUI;
+        private static Mapa mapa;
+        private static int tempoContador;
+        private int complemento;
+        private boolean travaThread = false;
+
+    public int getComplemento() {
+        return complemento;
+    }
+
+    public void setComplemento(int complemento) {
+        this.complemento = complemento;
+    }
+
+    public boolean isTravaThread() {
+        return travaThread;
+    }
+
+    public void setTravaThread(boolean travaThread) {
+        this.travaThread = travaThread;
+    }
         
-        public InterfaceUI() {
+        
+        
+        
+        public InterfaceUI(Mapa map) {
+                this.mapa = map;
                 configurarVisualWindows();
                 configurarFontePersonalizada();
                 initComponents();
+                DefaultCaret caret = (DefaultCaret)saidaTextArea.getCaret();
+                caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         }
         
         public static synchronized InterfaceUI getInstance(){
                 if(interfaceUI == null){
-                        interfaceUI = new InterfaceUI();
+                        interfaceUI = new InterfaceUI(mapa);
                 }
                 return interfaceUI;
         }
@@ -46,9 +78,15 @@ public class InterfaceUI extends javax.swing.JFrame {
                 saidaTextArea = new javax.swing.JTextArea();
                 entradaPanel = new javax.swing.JPanel();
                 entradaTextField = new javax.swing.JTextField();
+                jLabel1 = new javax.swing.JLabel();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setBackground(new java.awt.Color(0, 0, 0));
+                addWindowListener(new java.awt.event.WindowAdapter() {
+                        public void windowOpened(java.awt.event.WindowEvent evt) {
+                                interfaceWindowOpened(evt);
+                        }
+                });
 
                 mainPanel.setBackground(new java.awt.Color(0, 0, 0));
                 mainPanel.setForeground(new java.awt.Color(0, 255, 0));
@@ -158,22 +196,33 @@ public class InterfaceUI extends javax.swing.JFrame {
 
                 entradaTextField.setBackground(new java.awt.Color(0, 0, 0));
                 entradaTextField.setForeground(new java.awt.Color(0, 255, 0));
-                entradaTextField.setText(">");
                 entradaTextField.setBorder(null);
+                entradaTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+                        public void keyPressed(java.awt.event.KeyEvent evt) {
+                                entradaTextFieldKeyPressed(evt);
+                        }
+                });
+
+                jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+                jLabel1.setForeground(new java.awt.Color(0, 255, 0));
+                jLabel1.setText(" $ ");
 
                 javax.swing.GroupLayout entradaPanelLayout = new javax.swing.GroupLayout(entradaPanel);
                 entradaPanel.setLayout(entradaPanelLayout);
                 entradaPanelLayout.setHorizontalGroup(
                         entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 858, Short.MAX_VALUE)
+                        .addGroup(entradaPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(entradaPanelLayout.createSequentialGroup()
-                                        .addComponent(entradaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 837, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(19, 19, 19)
+                                        .addComponent(entradaTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(23, Short.MAX_VALUE)))
                 );
                 entradaPanelLayout.setVerticalGroup(
                         entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 25, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
                         .addGroup(entradaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, entradaPanelLayout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
@@ -220,6 +269,20 @@ public class InterfaceUI extends javax.swing.JFrame {
                 pack();
         }// </editor-fold>//GEN-END:initComponents
 
+        private void entradaTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entradaTextFieldKeyPressed
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                        String comando = InterfaceUI.getInstance().entradaTextField.getText();
+                        InterfaceUI.escreverSaida(comando);
+                        mapa.idCmd(comando);
+                        InterfaceUI.getInstance().entradaTextField.setText("");
+                        
+                 }
+        }//GEN-LAST:event_entradaTextFieldKeyPressed
+
+        private void interfaceWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_interfaceWindowOpened
+                entradaTextField.requestFocus();
+        }//GEN-LAST:event_interfaceWindowOpened
+
         private void configurarVisualWindows(){
                 try {
                         for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -261,6 +324,48 @@ public class InterfaceUI extends javax.swing.JFrame {
                 InterfaceUI.getInstance().saidaTextArea.append(texto+"\n");
         }
         
+        public void zerarContador(){
+            InterfaceUI.getInstance().setTravaThread(false);
+            InterfaceUI.getInstance().contador.setForeground(Color.green);
+            InterfaceUI.getInstance().contador.setText("00:00");
+            InterfaceUI.getInstance().validate();
+            escreverSaida("entrouuuuuuu ");
+        }
+        
+           public static void alterarContador(int tempoDeResposta) {
+                tempoContador = tempoDeResposta;
+                InterfaceUI.getInstance().setTravaThread(true);
+                /*
+                new Thread() {
+                    @Override
+                    public void run() {
+                    */
+                        while (tempoContador > 0 && InterfaceUI.getInstance().isTravaThread()) {
+                            InterfaceUI.escreverSaida(InterfaceUI.getInstance().isTravaThread()+"");
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException ex) {
+                                
+                            }
+                            tempoContador -= 1000;
+                            if (tempoContador / 1000 > 5) {
+                                InterfaceUI.getInstance().contador.setForeground(Color.yellow);
+                            } else {
+                                InterfaceUI.getInstance().contador.setForeground(Color.red);
+                            }
+                            String num = "" ;
+                            if(tempoContador / 1000 < 10){
+                                num = "0"+tempoContador/1000;
+                            }else{
+                                num = ""+tempoContador/1000;
+                            }
+                            InterfaceUI.getInstance().contador.setText("00:"+num);
+                        }
+                        
+                   // }
+                //}.start();
+            }
+        
         public void iniciarUI() {
             java.awt.EventQueue.invokeLater(new Runnable() {
                     public void run() {
@@ -278,6 +383,7 @@ public class InterfaceUI extends javax.swing.JFrame {
         public javax.swing.JTextField entradaTextField;
         public javax.swing.JPanel goldPanel;
         public javax.swing.JPanel itemPanel;
+        private javax.swing.JLabel jLabel1;
         private javax.swing.JScrollPane jScrollPane1;
         private javax.swing.JPanel mainPanel;
         public javax.swing.JPanel saidaPanel;

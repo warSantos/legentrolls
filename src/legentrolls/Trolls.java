@@ -1,5 +1,6 @@
 package legentrolls;
 
+import interfaces.gui.InterfaceUI;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -53,27 +54,27 @@ public class Trolls {
                 
                 if(nome.equalsIgnoreCase(getNome(i))){
               
-                    System.out.println("Você matou o troll "+getNome(i)+"!");
+                    InterfaceUI.escreverSaida("Você matou o troll "+getNome(i)+"!");
                     setNome("-", i);
                     this.qtdeTrolls--;
                     return;               
                 }
             }
-            System.out.println("Não existe troll '"+nome+"' nessa sala.");
+            InterfaceUI.escreverSaida("Não existe troll '"+nome+"' nessa sala.");
         }else{
             
-            System.out.println("Não há trolls no local.");
+            InterfaceUI.escreverSaida("Não há trolls no local.");
         }
     }
      
     public void listaTrolls() {
         
-        System.out.println("Número de trolls: " + getQtdeTrolls() + ".");
+        InterfaceUI.escreverSaida("Número de trolls: " + getQtdeTrolls() + ".");
         for(int i = 0; i < 5; i++){
             
             if(!"-".equals(getNome(i))){
                 
-                System.out.println(getNome(i));
+                InterfaceUI.escreverSaida(getNome(i));
             }
         }
     }
