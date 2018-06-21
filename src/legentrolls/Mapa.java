@@ -685,6 +685,8 @@ public class Mapa extends Thread {
                 InterfaceUI.escreverSaida("Comando não encontrado.");
                 break;
         }
+        
+        InterfaceUI.getInstance().atualizarStatus();
         moveTrolls();
     }
 
