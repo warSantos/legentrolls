@@ -85,16 +85,16 @@ public class Personagem {
         if (bag.getQtdePocao() > 0) {
 
             bag.removePocao(1);
-            InterfaceUI.escreverSaida("");
-            InterfaceUI.escreverSaida("Ataque de troll bloqueado!");
-            InterfaceUI.escreverSaida("");
+            InterfaceUI.getInstance().escreverSaida("");
+            InterfaceUI.getInstance().escreverSaida("Ataque de troll bloqueado!");
+            InterfaceUI.getInstance().escreverSaida("");
 
         } else if (bag.getQtdeItens() > 0) {
 
-            InterfaceUI.escreverSaida("");
-            InterfaceUI.escreverSaida("Você foi ferido!");
-            InterfaceUI.escreverSaida("Todos seus itens foram perdidos!");
-            InterfaceUI.escreverSaida("");
+            InterfaceUI.getInstance().escreverSaida("");
+            InterfaceUI.getInstance().escreverSaida("Você foi ferido!");
+            InterfaceUI.getInstance().escreverSaida("Todos seus itens foram perdidos!");
+            InterfaceUI.getInstance().escreverSaida("");
             bag.setMachado(0);
             bag.setQtdeDiam(0);
             bag.setQtdeOuro(0);
@@ -102,23 +102,23 @@ public class Personagem {
             bag.setQtdeItens(0);
         }else{
             
-            InterfaceUI.escreverSaida("Você morreu.");
-            InterfaceUI.escreverSaida("FIM DE JOGO - DERROTA");
+            InterfaceUI.getInstance().escreverSaida("Você morreu.");
+            InterfaceUI.getInstance().escreverSaida("FIM DE JOGO - DERROTA");
             System.exit(0);           
         }
     }
 
     public void lsMe() {
 
-        InterfaceUI.escreverSaida("");
-        InterfaceUI.escreverSaida("Itens no inventário: " + getBag().getQtdeItens());
-        InterfaceUI.escreverSaida("Machados: " + bag.getMachado());
-        InterfaceUI.escreverSaida("Diamante: " + bag.getQtdeDiam());
-        InterfaceUI.escreverSaida("Ouro: " + bag.getQtdeOuro());
-        InterfaceUI.escreverSaida("Poção: " + bag.getQtdePocao());
-        InterfaceUI.escreverSaida("Chaves: " + bag.getQtdeChave());
-        InterfaceUI.escreverSaida("");
-        InterfaceUI.escreverSaida("Sala atual: " + getPosicao());
-        InterfaceUI.escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("Itens no inventário: " + getBag().getQtdeItens());
+        InterfaceUI.getInstance().escreverSaida("Machados: " + bag.getMachado());
+        InterfaceUI.getInstance().escreverSaida("Diamante: " + bag.getQtdeDiam());
+        InterfaceUI.getInstance().escreverSaida("Ouro: " + bag.getQtdeOuro());
+        InterfaceUI.getInstance().escreverSaida("Poção: " + bag.getQtdePocao());
+        InterfaceUI.getInstance().escreverSaida("Chaves: " + bag.getQtdeChave());
+        InterfaceUI.getInstance().escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("Sala atual: " + getPosicao());
+        InterfaceUI.getInstance().escreverSaida("");
     }
 }

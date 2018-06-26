@@ -54,27 +54,27 @@ public class Trolls {
                 
                 if(nome.equalsIgnoreCase(getNome(i))){
               
-                    InterfaceUI.escreverSaida("Você matou o troll "+getNome(i)+"!");
+                    InterfaceUI.getInstance().escreverSaida("Você matou o troll "+getNome(i)+"!");
                     setNome("-", i);
                     this.qtdeTrolls--;
                     return;               
                 }
             }
-            InterfaceUI.escreverSaida("Não existe troll '"+nome+"' nessa sala.");
+            InterfaceUI.getInstance().escreverSaida("Não existe troll '"+nome+"' nessa sala.");
         }else{
             
-            InterfaceUI.escreverSaida("Não há trolls no local.");
+            InterfaceUI.getInstance().escreverSaida("Não há trolls no local.");
         }
     }
      
     public void listaTrolls() {
         
-        InterfaceUI.escreverSaida("Número de trolls: " + getQtdeTrolls() + ".");
+        InterfaceUI.getInstance().escreverSaida("Número de trolls: " + getQtdeTrolls() + ".");
         for(int i = 0; i < 5; i++){
             
             if(!"-".equals(getNome(i))){
                 
-                InterfaceUI.escreverSaida(getNome(i));
+                InterfaceUI.getInstance().escreverSaida(getNome(i));
             }
         }
     }

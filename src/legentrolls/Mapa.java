@@ -44,7 +44,7 @@ public class Mapa extends Thread {
             mapaSalas[j].getTroll().criaTrolls();
             mapaSalas[j].getBau().criarItens();
         }
-        InterfaceUI.escreverSaida("Finalizando construção das salas...");
+        InterfaceUI.getInstance().escreverSaida("Finalizando construção das salas...");
     }
 
     public void buildMapa() {
@@ -54,7 +54,7 @@ public class Mapa extends Thread {
         mapaSalas[15].setJogadorEsta(1);
         /* Iniciando portas */
         /* (qual porta do vetor, qual porta para sala, estado) */
-        InterfaceUI.escreverSaida("Criando salas...");
+        InterfaceUI.getInstance().escreverSaida("Criando salas...");
 
         mapaSalas[0].getPortas().setPortas(0, 1, 2); // 0,1
         mapaSalas[0].getPortas().setPortas(1, 5, 2); // 0,5
@@ -118,7 +118,7 @@ public class Mapa extends Thread {
         
         /* Configurando Sala (intens e trolls).*/
 
-        InterfaceUI.escreverSaida("Criando Itens e Trolls...");
+        InterfaceUI.getInstance().escreverSaida("Criando Itens e Trolls...");
 
         try {
             constroiSalas();
@@ -129,38 +129,38 @@ public class Mapa extends Thread {
     
     public void lsMap(){
         
-        InterfaceUI.escreverSaida("");
-        InterfaceUI.escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("");
         for(int i = 0; i < 4; ++i){
             for(int j = 0; j < 5;++j){
                 if(mapaSalas[(i * 5) + j].getVisitado() == 1){
                     if(((i * 5) + j) > 9){
-                        InterfaceUI.escreverSaida("  | " + ((i * 5) + j) +"   |  "); 
+                        InterfaceUI.getInstance().escreverSaida("  | " + ((i * 5) + j) +"   |  "); 
                     }else{
-                        InterfaceUI.escreverSaida("  |  " + ((i * 5) + j) +"   |  ");
+                        InterfaceUI.getInstance().escreverSaida("  |  " + ((i * 5) + j) +"   |  ");
                     }
                 }
             }
-            InterfaceUI.escreverSaida("");
-            InterfaceUI.escreverSaida("");
+            InterfaceUI.getInstance().escreverSaida("");
+            InterfaceUI.getInstance().escreverSaida("");
         }
     }
     
     public void view() {
         
-        InterfaceUI.escreverSaida("");
-        InterfaceUI.escreverSaida("Sala: " + player.getPosicao() + " Itens: ");
-        InterfaceUI.escreverSaida("");
-        InterfaceUI.escreverSaida("Machados: " + mapaSalas[player.getPosicao()].getBau().getMachado());
-        InterfaceUI.escreverSaida("Diamante: " + mapaSalas[player.getPosicao()].getBau().getQtdeDiam());
-        InterfaceUI.escreverSaida("Ouro: " + mapaSalas[player.getPosicao()].getBau().getQtdeOuro());
-        InterfaceUI.escreverSaida("Poção: " + mapaSalas[player.getPosicao()].getBau().getQtdePocao());
-        InterfaceUI.escreverSaida("Chaves: " + mapaSalas[player.getPosicao()].getBau().getQtdeChave());
-        InterfaceUI.escreverSaida("Trolls");
+        InterfaceUI.getInstance().escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("Sala: " + player.getPosicao() + " Itens: ");
+        InterfaceUI.getInstance().escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("Machados: " + mapaSalas[player.getPosicao()].getBau().getMachado());
+        InterfaceUI.getInstance().escreverSaida("Diamante: " + mapaSalas[player.getPosicao()].getBau().getQtdeDiam());
+        InterfaceUI.getInstance().escreverSaida("Ouro: " + mapaSalas[player.getPosicao()].getBau().getQtdeOuro());
+        InterfaceUI.getInstance().escreverSaida("Poção: " + mapaSalas[player.getPosicao()].getBau().getQtdePocao());
+        InterfaceUI.getInstance().escreverSaida("Chaves: " + mapaSalas[player.getPosicao()].getBau().getQtdeChave());
+        InterfaceUI.getInstance().escreverSaida("Trolls");
         mapaSalas[player.getPosicao()].getTroll().listaTrolls();
-        InterfaceUI.escreverSaida("Portas:");
+        InterfaceUI.getInstance().escreverSaida("Portas:");
         mapaSalas[player.getPosicao()].getPortas().showDoors();
-        InterfaceUI.escreverSaida("");
+        InterfaceUI.getInstance().escreverSaida("");
     }
 
     public void help(String parametro) {
@@ -168,101 +168,101 @@ public class Mapa extends Thread {
         switch (parametro) {
 
             case "cd":
-                InterfaceUI.escreverSaida("\nFunção: sair de uma sala.");
-                InterfaceUI.escreverSaida("Requisitos:\n\t1. é necessário que o player esteja próximo de uma porta.");
-                InterfaceUI.escreverSaida("\t2. Se a porta estiver fechada, é necessário possuir ao menos uma chave\n" + 
+                InterfaceUI.getInstance().escreverSaida("\nFunção: sair de uma sala.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos:\n\t1. é necessário que o player esteja próximo de uma porta.");
+                InterfaceUI.getInstance().escreverSaida("\t2. Se a porta estiver fechada, é necessário possuir ao menos uma chave\n" + 
                         "\tna mochila para abrir a porta.");
-                InterfaceUI.escreverSaida("Exemplo: cd");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: cd");
                 break;
             case "close":
-                InterfaceUI.escreverSaida("\nFunção: fechar uma porta.");
-                InterfaceUI.escreverSaida("Requisitos: é necessário que o player esteja próximo a uma porta e\n" + 
+                InterfaceUI.getInstance().escreverSaida("\nFunção: fechar uma porta.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: é necessário que o player esteja próximo a uma porta e\n" + 
                         "possuir ao menos uma chave em sua mochila.");
-                InterfaceUI.escreverSaida("Exemplo: close");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: close");
                 break;
             case "rm":
-                InterfaceUI.escreverSaida("\nFunção: remover um item da mochila.");
-                InterfaceUI.escreverSaida("Parâmetros: axe, diam, gold, key e potion.");
-                InterfaceUI.escreverSaida("Requisitos: para os intens axe, key e potion é necessário informar\n" + 
+                InterfaceUI.getInstance().escreverSaida("\nFunção: remover um item da mochila.");
+                InterfaceUI.getInstance().escreverSaida("Parâmetros: axe, diam, gold, key e potion.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: para os intens axe, key e potion é necessário informar\n" + 
                         "a quantidade desejada.");
-				InterfaceUI.escreverSaida("Exemplo: rm gold");
-                InterfaceUI.escreverSaida("Exemplo: rm axe 2");
+				InterfaceUI.getInstance().escreverSaida("Exemplo: rm gold");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: rm axe 2");
                 break;
             case "ls":
-                InterfaceUI.escreverSaida("\nFunção: exibir as configurações da sala.");
-                InterfaceUI.escreverSaida("Requisitos: não possui requisitos.");
-                InterfaceUI.escreverSaida("Exemplo: ls");
+                InterfaceUI.getInstance().escreverSaida("\nFunção: exibir as configurações da sala.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: ls");
                 break;
             case "lsdoors":
-                InterfaceUI.escreverSaida("\nFunção: exibe as portas existentes na sala e seus respectivos\n" +
+                InterfaceUI.getInstance().escreverSaida("\nFunção: exibe as portas existentes na sala e seus respectivos\n" +
                         "estados (Aberta ou Fechada).");
-                InterfaceUI.escreverSaida("Requisitos: não possui requisitos.");
-                InterfaceUI.escreverSaida("Exemplo: lsdoors");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: lsdoors");
                 break;
             case "lsmap":
-                InterfaceUI.escreverSaida("\nFunção: exibe o mapa geral das salas.");
-                InterfaceUI.escreverSaida("Requisitos: não possui requisitos.");
-                InterfaceUI.escreverSaida("Exemplo: lsmap");
+                InterfaceUI.getInstance().escreverSaida("\nFunção: exibe o mapa geral das salas.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: lsmap");
                 break;
             case "lsme":
-                InterfaceUI.escreverSaida("\nFunção: exibe os itens do player e em qual sala ele está.");
-                InterfaceUI.escreverSaida("Requisitos: não possui requisitos.");
-                InterfaceUI.escreverSaida("Exemplo: lsme");
+                InterfaceUI.getInstance().escreverSaida("\nFunção: exibe os itens do player e em qual sala ele está.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: lsme");
                 break;
             case "moveto":
-                InterfaceUI.escreverSaida("\nFunção: move o player para um iten ou porta.");
-                InterfaceUI.escreverSaida("Parâmetros: axe, diam, door, gold, key e potion");
-                InterfaceUI.escreverSaida("Requisitos:\n\t1. Não possui requisitos para mover em direção a um item.");
-                InterfaceUI.escreverSaida("\tExemplo: moveto axe");
-                InterfaceUI.escreverSaida("\t2. É necessário indicar para qual porta deseja se " +
+                InterfaceUI.getInstance().escreverSaida("\nFunção: move o player para um iten ou porta.");
+                InterfaceUI.getInstance().escreverSaida("Parâmetros: axe, diam, door, gold, key e potion");
+                InterfaceUI.getInstance().escreverSaida("Requisitos:\n\t1. Não possui requisitos para mover em direção a um item.");
+                InterfaceUI.getInstance().escreverSaida("\tExemplo: moveto axe");
+                InterfaceUI.getInstance().escreverSaida("\t2. É necessário indicar para qual porta deseja se " +
                         "\tmover.");
-                InterfaceUI.escreverSaida("\tExemplo: moveto door 8");
+                InterfaceUI.getInstance().escreverSaida("\tExemplo: moveto door 8");
                 break;
             case "quit":
-                InterfaceUI.escreverSaida("\nFunção: encerra o jogo (perde).");
-                InterfaceUI.escreverSaida("Requisitos: não possui requisitos.");
-                InterfaceUI.escreverSaida("Exemplo: cd");
+                InterfaceUI.getInstance().escreverSaida("\nFunção: encerra o jogo (perde).");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: cd");
                 break;
             case "kill":
-                InterfaceUI.escreverSaida("\nFunção: mata um troll.");
-                InterfaceUI.escreverSaida("Parâmetros: Nomes");
-                InterfaceUI.escreverSaida("Requisitos:\n\t1. O player deve possuir pelo menos um machados em sua mochila.");
-                InterfaceUI.escreverSaida("\t2. Deve-se indicar o nome do troll alvo.");
-                InterfaceUI.escreverSaida("\tExemplo: kill Mallandro");
+                InterfaceUI.getInstance().escreverSaida("\nFunção: mata um troll.");
+                InterfaceUI.getInstance().escreverSaida("Parâmetros: Nomes");
+                InterfaceUI.getInstance().escreverSaida("Requisitos:\n\t1. O player deve possuir pelo menos um machados em sua mochila.");
+                InterfaceUI.getInstance().escreverSaida("\t2. Deve-se indicar o nome do troll alvo.");
+                InterfaceUI.getInstance().escreverSaida("\tExemplo: kill Mallandro");
                 break;
             case "take":
-                InterfaceUI.escreverSaida("\nFunção: pega um item presente na sala e coloca na mochila.");
-                InterfaceUI.escreverSaida("Parâmetros: axe, diam, gold, key e potion.");
-                InterfaceUI.escreverSaida("Requisitos:\n\t1. É necessário mover o player em direção\n" + 
+                InterfaceUI.getInstance().escreverSaida("\nFunção: pega um item presente na sala e coloca na mochila.");
+                InterfaceUI.getInstance().escreverSaida("Parâmetros: axe, diam, gold, key e potion.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos:\n\t1. É necessário mover o player em direção\n" + 
                         "\tao item desejado.");
-                InterfaceUI.escreverSaida("\t2. Para os itens OURO e DIAMANTE não é" + 
+                InterfaceUI.getInstance().escreverSaida("\t2. Para os itens OURO e DIAMANTE não é" + 
                         "\tnecessário indicar a quantidade\n\tdesejada (Todo ouro ou diamante na sala é" + 
                         "adquirido para o player).");
-                InterfaceUI.escreverSaida("\tExemplo: take gold");
-                InterfaceUI.escreverSaida("\t3. Para os itens CHAVE, MACHADO e POÇÃO, deve-se" + 
+                InterfaceUI.getInstance().escreverSaida("\tExemplo: take gold");
+                InterfaceUI.getInstance().escreverSaida("\t3. Para os itens CHAVE, MACHADO e POÇÃO, deve-se" + 
                         " informar a quantidade desejada.");
-                InterfaceUI.escreverSaida("\tExemplo: take key 2");
+                InterfaceUI.getInstance().escreverSaida("\tExemplo: take key 2");
                 break;
             default:
-                InterfaceUI.escreverSaida("\nDocumentação Legentrolls, versão 0.1.");
-                InterfaceUI.escreverSaida("");
-                InterfaceUI.escreverSaida("Comandos Básicos:");
-                InterfaceUI.escreverSaida("");
-                InterfaceUI.escreverSaida("cd");
-                InterfaceUI.escreverSaida("close");
-                InterfaceUI.escreverSaida("help");
-                InterfaceUI.escreverSaida("kill");
-                InterfaceUI.escreverSaida("ls");
-                InterfaceUI.escreverSaida("lsdoors");
-                InterfaceUI.escreverSaida("lsmap");
-                InterfaceUI.escreverSaida("lsme");
-                InterfaceUI.escreverSaida("moveto");
-                InterfaceUI.escreverSaida("quit");                
-                InterfaceUI.escreverSaida("rm");
-                InterfaceUI.escreverSaida("take\n");
-                InterfaceUI.escreverSaida("Todos os comandos possuem manuais com maiores detalhes. Para consultar\n" +
+                InterfaceUI.getInstance().escreverSaida("\nDocumentação Legentrolls, versão 0.1.");
+                InterfaceUI.getInstance().escreverSaida("");
+                InterfaceUI.getInstance().escreverSaida("Comandos Básicos:");
+                InterfaceUI.getInstance().escreverSaida("");
+                InterfaceUI.getInstance().escreverSaida("cd");
+                InterfaceUI.getInstance().escreverSaida("close");
+                InterfaceUI.getInstance().escreverSaida("help");
+                InterfaceUI.getInstance().escreverSaida("kill");
+                InterfaceUI.getInstance().escreverSaida("ls");
+                InterfaceUI.getInstance().escreverSaida("lsdoors");
+                InterfaceUI.getInstance().escreverSaida("lsmap");
+                InterfaceUI.getInstance().escreverSaida("lsme");
+                InterfaceUI.getInstance().escreverSaida("moveto");
+                InterfaceUI.getInstance().escreverSaida("quit");                
+                InterfaceUI.getInstance().escreverSaida("rm");
+                InterfaceUI.getInstance().escreverSaida("take\n");
+                InterfaceUI.getInstance().escreverSaida("Todos os comandos possuem manuais com maiores detalhes. Para consultar\n" +
                         "o manual de cada comando, deve se utilizar a combinação: \"help + parametro\"");
-                InterfaceUI.escreverSaida("Exemplo: help moveto\n");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: help moveto\n");
                 break;
         }
     }
@@ -273,7 +273,7 @@ public class Mapa extends Thread {
             
             player.setPosicao(novaSala);
             mapaSalas[salaAntiga].setJogadorEsta(0);
-            InterfaceUI.escreverSaida("Saindo da sala...");
+            InterfaceUI.getInstance().escreverSaida("Saindo da sala...");
              //Matar thread aqui xdddd
              InterfaceUI.getInstance().zerarContador();
             mapaSalas[novaSala].setVisitado(1);
@@ -289,10 +289,10 @@ public class Mapa extends Thread {
                 player.getBag().removeChave(1);
                 player.setPosicao(novaSala);
                 mapaSalas[salaAntiga].setJogadorEsta(0);
-                InterfaceUI.escreverSaida("Abrindo Porta...");
+                InterfaceUI.getInstance().escreverSaida("Abrindo Porta...");
                 mapaSalas[salaAntiga].getPortas().alteraEstado(novaSala, 1);
                 mapaSalas[novaSala].getPortas().alteraEstado(salaAntiga, 1);
-                InterfaceUI.escreverSaida("Saindo...");
+                InterfaceUI.getInstance().escreverSaida("Saindo...");
                
                 mapaSalas[novaSala].setJogadorEsta(1);
                 mapaSalas[novaSala].setVisitado(1);
@@ -301,12 +301,12 @@ public class Mapa extends Thread {
                 
             }else{
                 
-                InterfaceUI.escreverSaida("Você está sem chaves.");
+                InterfaceUI.getInstance().escreverSaida("Você está sem chaves.");
             }
         }
 	if (novaSala == 18) {
-            InterfaceUI.escreverSaida("Parabéns! Você encontrou a saída!");
-            InterfaceUI.escreverSaida("FIM DE JOGO - VITÓRIA");
+            InterfaceUI.getInstance().escreverSaida("Parabéns! Você encontrou a saída!");
+            InterfaceUI.getInstance().escreverSaida("FIM DE JOGO - VITÓRIA");
             System.exit(0);
         }
     }
@@ -317,18 +317,18 @@ public class Mapa extends Thread {
             
             switch (mapaSalas[player.getPosicao()].getPortas().existePorta(porta)) {
                 case 1:
-                    InterfaceUI.escreverSaida("Fechando porta "+ porta +" ...");
+                    InterfaceUI.getInstance().escreverSaida("Fechando porta "+ porta +" ...");
                     mapaSalas[player.getPosicao()].getPortas().alteraEstado(porta, 2);
                     mapaSalas[porta].getPortas().alteraEstado(player.getPosicao(), 2);
                     player.getBag().removeChave(1);
                     break;
                 case 2:
-                    InterfaceUI.escreverSaida("Esta porta já está fechada.");                    
+                    InterfaceUI.getInstance().escreverSaida("Esta porta já está fechada.");                    
                     break;
             }
             return;
         }
-        InterfaceUI.escreverSaida("Suas poções acabaram.");    
+        InterfaceUI.getInstance().escreverSaida("Suas poções acabaram.");    
     }
     
     public void moveTo(String parametro, int complemento){
@@ -343,11 +343,11 @@ public class Mapa extends Thread {
                 case 2:
                     // porta fechada.
                     player.setQualItem(11);
-                    InterfaceUI.escreverSaida("Porta fechada.");
+                    InterfaceUI.getInstance().escreverSaida("Porta fechada.");
                     break;
                 default:    
                     // porta inexistente.
-                    InterfaceUI.escreverSaida("Esta porta não existe.");
+                    InterfaceUI.getInstance().escreverSaida("Esta porta não existe.");
                     break;
             }
         } else {
@@ -374,7 +374,7 @@ public class Mapa extends Thread {
                     break;
                 default:
                     // opção inválida para comando moveto.
-                    InterfaceUI.escreverSaida("Parâmetro não identificado.");
+                    InterfaceUI.getInstance().escreverSaida("Parâmetro não identificado.");
                     break;
             }
         }
@@ -407,11 +407,11 @@ public class Mapa extends Thread {
                         player.setQualItem(0);
                     }else{
                         
-                        InterfaceUI.escreverSaida("Quantidade de itens inválida.");
+                        InterfaceUI.getInstance().escreverSaida("Quantidade de itens inválida.");
                     }
                 } else {
 
-                    InterfaceUI.escreverSaida("Não há chaves perto de você.");
+                    InterfaceUI.getInstance().escreverSaida("Não há chaves perto de você.");
                 }
                 break;
             // pegar diamante.
@@ -424,7 +424,7 @@ public class Mapa extends Thread {
                     mapaSalas[player.getPosicao()].getBau().setQtdeDiam(0);
                 } else {
 
-                    InterfaceUI.escreverSaida("Não há diamante perto de você.");
+                    InterfaceUI.getInstance().escreverSaida("Não há diamante perto de você.");
                 }
                 break;
             // pegar machado.
@@ -439,11 +439,11 @@ public class Mapa extends Thread {
                         player.setQualItem(0);
                     }else{
                         
-                        InterfaceUI.escreverSaida("Quantidade de itens inválida.");
+                        InterfaceUI.getInstance().escreverSaida("Quantidade de itens inválida.");
                     }
                 } else {
 
-                    InterfaceUI.escreverSaida("Não há machados perto de você.");
+                    InterfaceUI.getInstance().escreverSaida("Não há machados perto de você.");
                 }
                 break;
             // pegar ouro.
@@ -456,7 +456,7 @@ public class Mapa extends Thread {
                     mapaSalas[player.getPosicao()].getBau().setQtdeOuro(0);
                 } else {
 
-                    InterfaceUI.escreverSaida("Não há ouro perto de você.");
+                    InterfaceUI.getInstance().escreverSaida("Não há ouro perto de você.");
                 }
                 break;
             // pegar uma pocao.
@@ -471,16 +471,16 @@ public class Mapa extends Thread {
                         player.setQualItem(0);
                     }else{
                         
-                        InterfaceUI.escreverSaida("Quantidade de itens inválida.");
+                        InterfaceUI.getInstance().escreverSaida("Quantidade de itens inválida.");
                     }
                 } else {
 
-                    InterfaceUI.escreverSaida("Não há poções perto de você.");
+                    InterfaceUI.getInstance().escreverSaida("Não há poções perto de você.");
                 }
                 break;
             default:
                 // opção inválida para comando moveto.
-                InterfaceUI.escreverSaida("Parâmetro não identificado.");
+                InterfaceUI.getInstance().escreverSaida("Parâmetro não identificado.");
                 break;
         }
     }
@@ -510,7 +510,7 @@ public class Mapa extends Thread {
                 break;
             default:
                 // opção inválida para comando moveto.
-                InterfaceUI.escreverSaida("Parâmetro não identificado.");
+                InterfaceUI.getInstance().escreverSaida("Parâmetro não identificado.");
                 break;
         }
     }
@@ -527,8 +527,8 @@ public class Mapa extends Thread {
                 int numSala = player.getPosicao();
 				
 
-                    InterfaceUI.escreverSaida("Sala " + player.getPosicao() + ".");
-                    InterfaceUI.escreverSaida("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
+                    InterfaceUI.getInstance().escreverSaida("Sala " + player.getPosicao() + ".");
+                    InterfaceUI.getInstance().escreverSaida("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
                     InterfaceUI.alterarContador(tempoDeResposta);   
                     //Thread.sleep(tempoDeResposta);
                 
@@ -585,9 +585,9 @@ public class Mapa extends Thread {
         InterfaceUI.getInstance().validate();
         // Construindo arena.
         buildMapa();
-        InterfaceUI.escreverSaida("Finalizando configurações extras...");
+        InterfaceUI.getInstance().escreverSaida("Finalizando configurações extras...");
         help("");
-        InterfaceUI.escreverSaida("PRESSIONE qualquer tecla para INICIAR o jogo...");
+        InterfaceUI.getInstance().escreverSaida("PRESSIONE qualquer tecla para INICIAR o jogo...");
     }
 
     public void idCmd(String t) {
@@ -600,7 +600,7 @@ public class Mapa extends Thread {
             entrarSala(player.getTempo());
             mapaSalas[player.getPosicao()].setAtivarAtaque(0);
         }
-        //InterfaceUI.escreverSaida("> ");         
+        //InterfaceUI.getInstance().escreverSaida("> ");         
         String args[] = t.split(" ");
         int numberArgs = args.length;
         if (numberArgs >= 1) {
@@ -616,7 +616,7 @@ public class Mapa extends Thread {
                 InterfaceUI.getInstance().setComplemento(Integer.parseInt(args[2]));
                 
             } catch (Exception e) {
-                InterfaceUI.escreverSaida("Parâmetro inválido.");
+                InterfaceUI.getInstance().escreverSaida("Parâmetro inválido.");
                 comando = "help";
                 parametro = args[0];
             }
@@ -625,7 +625,7 @@ public class Mapa extends Thread {
         switch (comando) {
             // vai de uma sala para outra.
             case "cd":
-                //InterfaceUI.escreverSaida("Complemento informa a hora certa: são "+InterfaceUI.getInstance().getComplemento()+"horas.");
+                //InterfaceUI.getInstance().escreverSaida("Complemento informa a hora certa: são "+InterfaceUI.getInstance().getComplemento()+"horas.");
                 exit(InterfaceUI.getInstance().getComplemento(), player.getPosicao());
                 break;
             // fechar porta.
@@ -649,7 +649,7 @@ public class Mapa extends Thread {
                 break;
             // mostra portas em uma sala.
             case "lsdoors":
-                InterfaceUI.escreverSaida("Portas...");
+                InterfaceUI.getInstance().escreverSaida("Portas...");
                 mapaSalas[player.getPosicao()].getPortas().showDoors();
                 break;
             // mostra itens na bag e sala atual.
@@ -661,8 +661,8 @@ public class Mapa extends Thread {
                 moveTo(parametro, InterfaceUI.getInstance().getComplemento());
                 break;
             case "quit":
-                InterfaceUI.escreverSaida("Jogo ENCERRADO pelo usuário.");
-                InterfaceUI.escreverSaida("FIM DE JOGO - DERROTA");
+                InterfaceUI.getInstance().escreverSaida("Jogo ENCERRADO pelo usuário.");
+                InterfaceUI.getInstance().escreverSaida("FIM DE JOGO - DERROTA");
                 System.exit(0);
                 break;
             // Arremessa machado
@@ -672,7 +672,7 @@ public class Mapa extends Thread {
                     player.getBag().removeMachado(1);
                 } else {
 
-                    InterfaceUI.escreverSaida("Você está sem machados.");
+                    InterfaceUI.getInstance().escreverSaida("Você está sem machados.");
                 }
                 break;
             // Inserindo Itens na bag do player.
@@ -682,7 +682,7 @@ public class Mapa extends Thread {
             case "null":
                 break;
             default:
-                InterfaceUI.escreverSaida("Comando não encontrado.");
+                InterfaceUI.getInstance().escreverSaida("Comando não encontrado.");
                 break;
         }
         

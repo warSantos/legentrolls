@@ -75,7 +75,7 @@ public class Itens {
     public int insereMachado(int qtdeMachado){
         
         if(getQtdeItens() < 5){
-            InterfaceUI.escreverSaida("Você pegou um machado.");
+            InterfaceUI.getInstance().escreverSaida("Você pegou um machado.");
             if(getQtdeItens() + qtdeMachado <= 5){
 
                 setMachado(getMachado() + qtdeMachado);
@@ -121,7 +121,7 @@ public class Itens {
         
         if(getQtdeItens() < 5){
             
-            InterfaceUI.escreverSaida("Você pegou uma poção.");
+            InterfaceUI.getInstance().escreverSaida("Você pegou uma poção.");
             if(getQtdeItens() + qtdePocao <= 5){
                 
                 setQtdePocao(getQtdePocao() + qtdePocao); 
@@ -163,7 +163,7 @@ public class Itens {
         
         if(getQtdeItens() < 5){
             
-            InterfaceUI.escreverSaida("Você pegou uma chave.");    
+            InterfaceUI.getInstance().escreverSaida("Você pegou uma chave.");    
             if(getQtdeItens() + qtdeChave <= 5){
                 
                 setQtdeChave(getQtdeChave() + qtdeChave); 

@@ -55,7 +55,7 @@ public class Porta {
                 return;
             }
         }
-        InterfaceUI.escreverSaida("Porta não encontrada.");
+        InterfaceUI.getInstance().escreverSaida("Porta não encontrada.");
     }
     
     public int getEstado(int numPorta){
@@ -69,10 +69,10 @@ public class Porta {
             
             if(getEstado(i) == 1){
                 
-                InterfaceUI.escreverSaida(" Porta para a sala " + getPorta(i) + " foi aberta.");
+                InterfaceUI.getInstance().escreverSaida(" Porta para a sala " + getPorta(i) + " foi aberta.");
             }else if(getEstado(i) == 2){
                 
-                InterfaceUI.escreverSaida(" Porta para a sala " + getPorta(i) + " foi fechada.");
+                InterfaceUI.getInstance().escreverSaida(" Porta para a sala " + getPorta(i) + " foi fechada.");
             }
         }
     }

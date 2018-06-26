@@ -474,7 +474,7 @@ public class InterfaceUI extends javax.swing.JFrame {
         private void entradaTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_entradaTextFieldKeyPressed
                 if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
                         String comando = InterfaceUI.getInstance().entradaTextField.getText();
-                        InterfaceUI.escreverSaida(comando);
+                        InterfaceUI.getInstance().escreverSaida(comando);
                         mapa.idCmd(comando);
                         InterfaceUI.getInstance().entradaTextField.setText("");
                         
@@ -549,7 +549,7 @@ public class InterfaceUI extends javax.swing.JFrame {
                     public void run() {
                     */
                         while (tempoContador > 0 && InterfaceUI.getInstance().isTravaThread()) {
-                            //InterfaceUI.escreverSaida(InterfaceUI.getInstance().isTravaThread()+"");
+                            //InterfaceUI.getInstance().escreverSaida(InterfaceUI.getInstance().isTravaThread()+"");
                             try {
                                 Thread.sleep(1000);
                             } catch (InterruptedException ex) {
