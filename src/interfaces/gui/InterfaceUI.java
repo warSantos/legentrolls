@@ -375,6 +375,7 @@ public class InterfaceUI extends javax.swing.JFrame {
         jScrollPane1.setBackground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setBorder(null);
 
+        saidaTextArea.setEditable(false);
         saidaTextArea.setBackground(new java.awt.Color(0, 0, 0));
         saidaTextArea.setColumns(20);
         saidaTextArea.setForeground(new java.awt.Color(0, 255, 0));

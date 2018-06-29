@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Mapa extends Thread {
     
@@ -307,6 +308,7 @@ public class Mapa extends Thread {
 	if (novaSala == 18) {
             InterfaceUI.getInstance().escreverSaida("Parabéns! Você encontrou a saída!");
             InterfaceUI.getInstance().escreverSaida("FIM DE JOGO - VITÓRIA");
+            JOptionPane.showMessageDialog(InterfaceUI.getInstance(),"FIM DE JOGO - VITÓRIA");
             System.exit(0);
         }
     }
@@ -516,31 +518,33 @@ public class Mapa extends Thread {
     }
     
     public void entrarSala(int tempoID){
-        
-        new Thread() {
-            @Override
-            public void run() {
+        if(!InterfaceUI.getInstance().isTravaThread()){
+            new Thread() {
+                @Override
+                public void run() {
 
-                Random gerador = new Random();
-                //int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
-                int tempoDeResposta = (30 * 1000);
-                int numSala = player.getPosicao();
-				
+                    Random gerador = new Random();
+                    //int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
+                    int tempoDeResposta = (30 * 1000);
+                    int numSala = player.getPosicao();
 
-                    InterfaceUI.getInstance().escreverSaida("Sala " + player.getPosicao() + ".");
-                    InterfaceUI.getInstance().escreverSaida("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
-                    InterfaceUI.alterarContador(tempoDeResposta);   
-                    //Thread.sleep(tempoDeResposta);
-                
-                // se ainda exixtir trolls na sala
-                if (tempoID == player.getTempo() && mapaSalas[numSala].getJogadorEsta() == 1
-                      && mapaSalas[numSala].getTroll().getQtdeTrolls() > 0) {
 
-                    player.lostItens();
-                    entrarSala(tempoID);
+                        InterfaceUI.getInstance().escreverSaida("Sala " + player.getPosicao() + ".");
+                        InterfaceUI.getInstance().escreverSaida("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
+                        InterfaceUI.alterarContador(tempoDeResposta);   
+                        //Thread.sleep(tempoDeResposta);
+
+                    // se ainda exixtir trolls na sala
+                    if (tempoID == player.getTempo() && mapaSalas[numSala].getJogadorEsta() == 1
+                          && mapaSalas[numSala].getTroll().getQtdeTrolls() > 0) {
+
+                        player.lostItens();
+                        entrarSala(tempoID);
+                    }
+                    
                 }
-            }
-        }.start();
+            }.start();
+        }
     }
     
     public void moveTrolls(){
@@ -583,6 +587,7 @@ public class Mapa extends Thread {
     public void mensagemInicial() {
         InterfaceUI.getInstance().contador.setText("00:00");
         InterfaceUI.getInstance().validate();
+        InterfaceUI.getInstance().setTravaThread(false);
         // Construindo arena.
         buildMapa();
         InterfaceUI.getInstance().escreverSaida("Finalizando configurações extras...");
@@ -663,6 +668,7 @@ public class Mapa extends Thread {
             case "quit":
                 InterfaceUI.getInstance().escreverSaida("Jogo ENCERRADO pelo usuário.");
                 InterfaceUI.getInstance().escreverSaida("FIM DE JOGO - DERROTA");
+                JOptionPane.showMessageDialog(InterfaceUI.getInstance(),"FIM DE JOGO - DERROTA");
                 System.exit(0);
                 break;
             // Arremessa machado

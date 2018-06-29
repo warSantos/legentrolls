@@ -1,6 +1,7 @@
 package legentrolls;
 
 import interfaces.gui.InterfaceUI;
+import javax.swing.JOptionPane;
 
 public class Personagem {
 
@@ -104,8 +105,11 @@ public class Personagem {
             
             InterfaceUI.getInstance().escreverSaida("Você morreu.");
             InterfaceUI.getInstance().escreverSaida("FIM DE JOGO - DERROTA");
+            JOptionPane.showMessageDialog(InterfaceUI.getInstance(),"FIM DE JOGO - DERROTA");
             System.exit(0);           
         }
+        InterfaceUI.getInstance().setTravaThread(false);
+        InterfaceUI.getInstance().atualizarStatus();
     }
 
     public void lsMe() {
