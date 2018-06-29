@@ -103,9 +103,8 @@ public class Personagem {
             bag.setQtdeItens(0);
         }else{
             
-            InterfaceUI.getInstance().escreverSaida("Você morreu.");
-            InterfaceUI.getInstance().escreverSaida("FIM DE JOGO - DERROTA");
-            JOptionPane.showMessageDialog(InterfaceUI.getInstance(),"FIM DE JOGO - DERROTA");
+            InterfaceUI.getInstance().escreverSaida("VOCÊ MORREU.");
+            JOptionPane.showMessageDialog(InterfaceUI.getInstance(),"VOCÊ MORREU.","Fim de jogo",JOptionPane.PLAIN_MESSAGE);
             System.exit(0);           
         }
         InterfaceUI.getInstance().setTravaThread(false);

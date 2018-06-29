@@ -527,9 +527,14 @@ public class Mapa extends Thread {
                     //int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
                     int tempoDeResposta = (30 * 1000);
                     int numSala = player.getPosicao();
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
 
-                        InterfaceUI.getInstance().escreverSaida("Sala " + player.getPosicao() + ".");
+                        //InterfaceUI.getInstance().escreverSaida("Sala " + player.getPosicao() + ".");
                         InterfaceUI.getInstance().escreverSaida("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
                         InterfaceUI.alterarContador(tempoDeResposta);   
                         //Thread.sleep(tempoDeResposta);
