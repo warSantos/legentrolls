@@ -523,7 +523,7 @@ public class Mapa extends Thread {
 
                 Random gerador = new Random();
                 //int tempoDeResposta = ((10 + gerador.nextInt(5)) * 1000);
-                int tempoDeResposta = (15 * 1000);
+                int tempoDeResposta = (30 * 1000);
                 int numSala = player.getPosicao();
 				
 
