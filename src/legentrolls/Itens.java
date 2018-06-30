@@ -69,23 +69,38 @@ public class Itens {
     
     public void insereDiam(int qtdeDiam){
         
+        if (qtdeDiam > 1) {
+            InterfaceUI.getInstance().escreverSaida("Você adiquiriu " + qtdeDiam + " unidades de diamante.");
+        } else {
+            InterfaceUI.getInstance().escreverSaida("Você adiquiriu uma unidade de diamante.");
+        }
         setQtdeDiam(getQtdeDiam() + qtdeDiam);        
     }
     
     public int insereMachado(int qtdeMachado){
         
         if(getQtdeItens() < 5){
-            InterfaceUI.getInstance().escreverSaida("Você pegou um machado.");
+            
             if(getQtdeItens() + qtdeMachado <= 5){
 
                 setMachado(getMachado() + qtdeMachado);
                 setQtdeItens(getQtdeItens() + qtdeMachado);
+                if (qtdeMachado > 1) {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou " + qtdeMachado + " machados.");
+                } else {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou um machado.");
+                }
                 return qtdeMachado;
             }else{
                 
                 int ret = (5 - getQtdeItens());
                 setMachado(getMachado() + (5 - getQtdeItens()));
                 setQtdeItens(5);
+                if (ret > 1) {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou " + qtdeMachado + " machados.");
+                } else {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou um machado.");
+                }
                 return ret;
             }
         }
@@ -114,6 +129,11 @@ public class Itens {
     
     public void insereOuro(int qtdeOuro){
         
+        if (qtdeOuro > 1) {
+            InterfaceUI.getInstance().escreverSaida("Você adiquiriu " + qtdePocao + " unidades de ouro.");
+        } else {
+            InterfaceUI.getInstance().escreverSaida("Você adiquiriu uma unidade de ouro.");
+        }
         setQtdeOuro(getQtdeOuro() + qtdeOuro);
     }
     
@@ -121,17 +141,26 @@ public class Itens {
         
         if(getQtdeItens() < 5){
             
-            InterfaceUI.getInstance().escreverSaida("Você pegou uma poção.");
             if(getQtdeItens() + qtdePocao <= 5){
                 
                 setQtdePocao(getQtdePocao() + qtdePocao); 
                 setQtdeItens(getQtdeItens() + qtdePocao);
+                if (qtdePocao > 1) {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou " + qtdePocao + " poções.");
+                } else {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou uma poção.");
+                }
                 return qtdePocao;
             }else{
                 
                 int ret = (5 - getQtdeItens());
                 setQtdePocao(getQtdePocao() + (5 - getQtdeItens()));
                 setQtdeItens(5);
+                if (ret > 1) {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou " + ret + " poções.");
+                } else {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou uma poção.");
+                }
                 return ret;
             }
         }
@@ -163,17 +192,26 @@ public class Itens {
         
         if(getQtdeItens() < 5){
             
-            InterfaceUI.getInstance().escreverSaida("Você pegou uma chave.");    
             if(getQtdeItens() + qtdeChave <= 5){
                 
                 setQtdeChave(getQtdeChave() + qtdeChave); 
                 setQtdeItens(getQtdeItens() + qtdeChave);
+                if (qtdeChave > 1) {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou " + qtdeChave + " chaves.");
+                } else {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou uma chave.");
+                }
                 return qtdeChave;
             }else{
                 
                 int ret = (5 - getQtdeItens());
                 setQtdeChave(getQtdeChave() + (5 - getQtdeItens()));
                 setQtdeItens(5);
+                if (ret > 1) {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou " + ret + " chaves.");
+                } else {
+                    InterfaceUI.getInstance().escreverSaida("Você pegou uma chave.");
+                }
                 return ret;
             }
         }            
