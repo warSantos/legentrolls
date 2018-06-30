@@ -96,7 +96,7 @@ public class Trolls {
         }
         // Atribuindo nomes aos trolls.
         Random gerador = new Random();
-        int qtde = gerador.nextInt(3);
+        int qtde = gerador.nextInt(2);
         for(i = 0; i < qtde; ++i){
             
             int rd = gerador.nextInt(20);

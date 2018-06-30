@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.text.DefaultCaret;
 import legentrolls.Mapa;
+import legentrolls.Sala;
 
 /**
  *
@@ -29,6 +30,15 @@ public class InterfaceUI extends javax.swing.JFrame {
         private static int tempoContador;
         private int complemento;
         private boolean travaThread = false;
+        private boolean matouTroll = false;
+
+    public boolean isMatouTroll() {
+        return matouTroll;
+    }
+
+    public void setMatouTroll(boolean matouTroll) {
+        this.matouTroll = matouTroll;
+    }
 
     public int getComplemento() {
         return complemento;
@@ -536,7 +546,7 @@ public class InterfaceUI extends javax.swing.JFrame {
             InterfaceUI.getInstance().validate();
         }
         
-           public static void alterarContador(int tempoDeResposta) {
+           public static void alterarContador(int tempoDeResposta, Sala mapaSalas[], int numSala) {
                 tempoContador = tempoDeResposta;
                 InterfaceUI.getInstance().setTravaThread(true);
                 /*
@@ -544,8 +554,13 @@ public class InterfaceUI extends javax.swing.JFrame {
                     @Override
                     public void run() {
                     */
-                        while (tempoContador > 0 && InterfaceUI.getInstance().isTravaThread()) {
-                            //InterfaceUI.getInstance().escreverSaida(InterfaceUI.getInstance().isTravaThread()+"");
+                        while (tempoContador > 0 && InterfaceUI.getInstance().isTravaThread() && mapaSalas[numSala].getTroll().getQtdeTrolls() > 0) {
+                            if(InterfaceUI.getInstance().isMatouTroll()){
+                                tempoContador = 30000;
+                                InterfaceUI.getInstance().setMatouTroll(false);
+                            }
+                            //InterfaceUI.getInstance().escreverSaida(mapaSalas[numSala].getTroll().getQtdeTrolls()+"");
+                            
                             try {
                                 Thread.sleep(1000);
                             } catch (InterruptedException ex) {

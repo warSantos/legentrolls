@@ -536,7 +536,7 @@ public class Mapa extends Thread {
 
                         //InterfaceUI.getInstance().escreverSaida("Sala " + player.getPosicao() + ".");
                         InterfaceUI.getInstance().escreverSaida("Você será ATACADO em " + tempoDeResposta / 1000 + " segundos!");
-                        InterfaceUI.alterarContador(tempoDeResposta);   
+                        InterfaceUI.alterarContador(tempoDeResposta,mapaSalas,numSala);   
                         //Thread.sleep(tempoDeResposta);
 
                     // se ainda exixtir trolls na sala
@@ -680,6 +680,7 @@ public class Mapa extends Thread {
             case "kill":
                 if (player.getBag().getMachado() > 0) {
                     mapaSalas[player.getPosicao()].getTroll().removeTrolls(parametro);
+                    InterfaceUI.getInstance().setMatouTroll(true);
                     player.getBag().removeMachado(1);
                 } else {
 
