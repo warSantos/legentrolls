@@ -126,26 +126,7 @@ public class Mapa extends Thread {
         } catch (IOException ex) {
             Logger.getLogger(Mapa.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    public void lsMap(){
-        
-        InterfaceUI.getInstance().escreverSaida("");
-        InterfaceUI.getInstance().escreverSaida("");
-        for(int i = 0; i < 4; ++i){
-            for(int j = 0; j < 5;++j){
-                if(mapaSalas[(i * 5) + j].getVisitado() == 1){
-                    if(((i * 5) + j) > 9){
-                        InterfaceUI.getInstance().escreverSaida("  | " + ((i * 5) + j) +"   |  "); 
-                    }else{
-                        InterfaceUI.getInstance().escreverSaida("  |  " + ((i * 5) + j) +"   |  ");
-                    }
-                }
-            }
-            InterfaceUI.getInstance().escreverSaida("");
-            InterfaceUI.getInstance().escreverSaida("");
-        }
-    }
+    }    
     
     public void view() {
         
@@ -168,17 +149,21 @@ public class Mapa extends Thread {
         
         switch (parametro) {
 
-            case "cd":
+            case "exit":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: sair de uma sala.");
                 InterfaceUI.getInstance().escreverSaida("Requisitos:\n\t1. é necessário que o player esteja próximo de uma porta.");
                 InterfaceUI.getInstance().escreverSaida("\t2. Se a porta estiver fechada, é necessário possuir ao menos uma chave\n" + 
                         "\tna mochila para abrir a porta.");
-                InterfaceUI.getInstance().escreverSaida("Exemplo: cd");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: exit");
+                InterfaceUI.getInstance().escreverSaida("Referência com shell bash: exit");
+                InterfaceUI.getInstance().escreverSaida("O comando exit deste jogo foi inspirado no comando exit do interpretador de comandos\n"
+                        + "shell bash, utilizado para sair de sessões de usuários, conexões ssh, telnet ou também para fechar\n"
+                        + "terminais de comando.");
                 break;
             case "close":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: fechar uma porta.");
-                InterfaceUI.getInstance().escreverSaida("Requisitos: é necessário que o player esteja próximo a uma porta e\n" + 
-                        "possuir ao menos uma chave em sua mochila.");
+                InterfaceUI.getInstance().escreverSaida("Requisitos: é necessário que o player esteja próximo a uma porta e possuir\n"
+                        + "ao menos uma chave em sua mochila.");
                 InterfaceUI.getInstance().escreverSaida("Exemplo: close");
                 break;
             case "rm":
@@ -188,48 +173,64 @@ public class Mapa extends Thread {
                         "a quantidade desejada.");
 				InterfaceUI.getInstance().escreverSaida("Exemplo: rm gold");
                 InterfaceUI.getInstance().escreverSaida("Exemplo: rm axe 2");
+                InterfaceUI.getInstance().escreverSaida("Referência com shell bash: rm");
+                InterfaceUI.getInstance().escreverSaida("O comando rm deste jogo foi inspirado no comando rm do interpretador de comandos\n"
+                        + "shell bash, utilizado para remover arquivos e diretórios");
                 break;
             case "ls":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: exibir as configurações da sala.");
                 InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
                 InterfaceUI.getInstance().escreverSaida("Exemplo: ls");
+                InterfaceUI.getInstance().escreverSaida("Referência com shell bash: ls");
+                InterfaceUI.getInstance().escreverSaida("O comando ls deste jogo foi inspirado no comando ls do interpretador de comandos\n"
+                        + "shell bash, utilizado para exibir os arquivos contidos em um ou vários diretórios\n"
+                        + "além das informações mais detalhadas sobre permissões, proprietários, tamanho, etc...");
                 break;
             case "lsdoors":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: exibe as portas existentes na sala e seus respectivos\n" +
                         "estados (Aberta ou Fechada).");
                 InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
                 InterfaceUI.getInstance().escreverSaida("Exemplo: lsdoors");
-                break;
-            case "lsmap":
-                InterfaceUI.getInstance().escreverSaida("\nFunção: exibe o mapa geral das salas.");
-                InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
-                InterfaceUI.getInstance().escreverSaida("Exemplo: lsmap");
+                InterfaceUI.getInstance().escreverSaida("Referência com shell bash: ls -d");
+                InterfaceUI.getInstance().escreverSaida("O comando rm deste jogo foi inspirado no comando ls mais o parâmetros -d do interpretador\n"
+                        + "de comandos shell bash, utilizado para mostra informações sobre os subdiretórios (filhos)\n"
+                        + "de um diretório (pai).");
                 break;
             case "lsme":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: exibe os itens do player e em qual sala ele está.");
                 InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
                 InterfaceUI.getInstance().escreverSaida("Exemplo: lsme");
+                InterfaceUI.getInstance().escreverSaida("Referência com shell bash: ls -l");
+                InterfaceUI.getInstance().escreverSaida("O comando rm deste jogo foi inspirado no comando ls mais o parâmetro -l do interpretador\n"
+                        + "de comandos shell bash, utilizado para exibir informações mais detalhadas sobre arquivos e diretórios\n"
+                        + "existentes em um diretório.");
                 break;
-            case "moveto":
+            case "cd":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: move o player para um iten ou porta.");
                 InterfaceUI.getInstance().escreverSaida("Parâmetros: axe, diam, door, gold, key e potion");
                 InterfaceUI.getInstance().escreverSaida("Requisitos:\n\t1. Não possui requisitos para mover em direção a um item.");
-                InterfaceUI.getInstance().escreverSaida("\tExemplo: moveto axe");
+                InterfaceUI.getInstance().escreverSaida("\tExemplo: cd axe");
                 InterfaceUI.getInstance().escreverSaida("\t2. É necessário indicar para qual porta deseja se " +
-                        "\tmover.");
-                InterfaceUI.getInstance().escreverSaida("\tExemplo: moveto door 8");
+                        "mover.");
+                InterfaceUI.getInstance().escreverSaida("\tExemplo: cd door 8");
+                InterfaceUI.getInstance().escreverSaida("Referência com shell bash: cd");
+                InterfaceUI.getInstance().escreverSaida("O comando rm deste jogo foi inspirado no comando cd do interpretador de comandos\n"
+                        + "shell bash, utilizado para navegação pela arvore de diretórios.");
                 break;
             case "quit":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: encerra o jogo (perde).");
                 InterfaceUI.getInstance().escreverSaida("Requisitos: não possui requisitos.");
-                InterfaceUI.getInstance().escreverSaida("Exemplo: cd");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: quit");
                 break;
             case "kill":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: mata um troll.");
                 InterfaceUI.getInstance().escreverSaida("Parâmetros: Nomes");
                 InterfaceUI.getInstance().escreverSaida("Requisitos:\n\t1. O player deve possuir pelo menos um machados em sua mochila.");
                 InterfaceUI.getInstance().escreverSaida("\t2. Deve-se indicar o nome do troll alvo.");
-                InterfaceUI.getInstance().escreverSaida("\tExemplo: kill Mallandro");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: kill Mallandro");
+                InterfaceUI.getInstance().escreverSaida("Referência com shell bash: kill");
+                InterfaceUI.getInstance().escreverSaida("O comando rm deste jogo foi inspirado no comando kill do interpretador de comandos\n"
+                        + "shell bash, utilizado para finalizar processos no sistema operacional informando o pid do processo.");
                 break;
             case "take":
                 InterfaceUI.getInstance().escreverSaida("\nFunção: pega um item presente na sala e coloca na mochila.");
@@ -249,21 +250,20 @@ public class Mapa extends Thread {
                 InterfaceUI.getInstance().escreverSaida("");
                 InterfaceUI.getInstance().escreverSaida("Comandos Básicos:");
                 InterfaceUI.getInstance().escreverSaida("");
-                InterfaceUI.getInstance().escreverSaida("cd");
+                InterfaceUI.getInstance().escreverSaida("exit");
                 InterfaceUI.getInstance().escreverSaida("close");
                 InterfaceUI.getInstance().escreverSaida("help");
                 InterfaceUI.getInstance().escreverSaida("kill");
                 InterfaceUI.getInstance().escreverSaida("ls");
                 InterfaceUI.getInstance().escreverSaida("lsdoors");
-                InterfaceUI.getInstance().escreverSaida("lsmap");
                 InterfaceUI.getInstance().escreverSaida("lsme");
-                InterfaceUI.getInstance().escreverSaida("moveto");
+                InterfaceUI.getInstance().escreverSaida("cd");
                 InterfaceUI.getInstance().escreverSaida("quit");                
                 InterfaceUI.getInstance().escreverSaida("rm");
                 InterfaceUI.getInstance().escreverSaida("take\n");
                 InterfaceUI.getInstance().escreverSaida("Todos os comandos possuem manuais com maiores detalhes. Para consultar\n" +
                         "o manual de cada comando, deve se utilizar a combinação: \"help + parametro\"");
-                InterfaceUI.getInstance().escreverSaida("Exemplo: help moveto\n");
+                InterfaceUI.getInstance().escreverSaida("Exemplo: help cd\n");
                 break;
         }
     }
@@ -333,7 +333,7 @@ public class Mapa extends Thread {
         InterfaceUI.getInstance().escreverSaida("Suas poções acabaram.");    
     }
     
-    public void moveTo(String parametro, int complemento){
+    public void cd(String parametro, int complemento){
         
         if ("door".equals(parametro)) {
             
@@ -375,7 +375,7 @@ public class Mapa extends Thread {
                     player.setQualItem(5);
                     break;
                 default:
-                    // opção inválida para comando moveto.
+                    // opção inválida para comando cd.
                     InterfaceUI.getInstance().escreverSaida("Parâmetro não identificado.");
                     break;
             }
@@ -481,7 +481,7 @@ public class Mapa extends Thread {
                 }
                 break;
             default:
-                // opção inválida para comando moveto.
+                // opção inválida para comando cd.
                 InterfaceUI.getInstance().escreverSaida("Parâmetro não identificado.");
                 break;
         }
@@ -511,7 +511,7 @@ public class Mapa extends Thread {
                 player.getBag().removePocao(complemento);
                 break;
             default:
-                // opção inválida para comando moveto.
+                // opção inválida para comando cd.
                 InterfaceUI.getInstance().escreverSaida("Parâmetro não identificado.");
                 break;
         }
@@ -634,17 +634,13 @@ public class Mapa extends Thread {
 
         switch (comando) {
             // vai de uma sala para outra.
-            case "cd":
+            case "exit":
                 //InterfaceUI.getInstance().escreverSaida("Complemento informa a hora certa: são "+InterfaceUI.getInstance().getComplemento()+"horas.");
                 exit(InterfaceUI.getInstance().getComplemento(), player.getPosicao());
                 break;
             // fechar porta.
             case "close":
                 closeDoor(InterfaceUI.getInstance().getComplemento());
-                break;
-            // Mostra Mapa;
-            case "lsmap":
-                lsMap();
                 break;
             // removendo intens da bag.
             case "rm":
@@ -667,8 +663,8 @@ public class Mapa extends Thread {
                 player.lsMe();
                 break;
             // movendo para item.
-            case "moveto":
-                moveTo(parametro, InterfaceUI.getInstance().getComplemento());
+            case "cd":
+                cd(parametro, InterfaceUI.getInstance().getComplemento());
                 break;
             case "quit":
                 InterfaceUI.getInstance().escreverSaida("Jogo ENCERRADO pelo usuário.");
