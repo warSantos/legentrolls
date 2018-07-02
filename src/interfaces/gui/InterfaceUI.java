@@ -129,11 +129,11 @@ public class InterfaceUI extends javax.swing.JFrame {
         itemPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 1, true));
         itemPanel.setLayout(null);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Pichau\\Documents\\UFSJ\\IHC\\legentrolls\\src\\interfaces\\img\\mapa13.jpg")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Cliente\\Documents\\UFSJ\\IHC\\legentrolls\\src\\interfaces\\img\\mapa13.jpg")); // NOI18N
         jLabel8.setText("jLabel8");
         jLabel8.setPreferredSize(new java.awt.Dimension(383, 185));
         itemPanel.add(jLabel8);
-        jLabel8.setBounds(10, 0, 380, 210);
+        jLabel8.setBounds(10, 0, 370, 200);
 
         salaPanel.setBackground(new java.awt.Color(0, 0, 0));
         salaPanel.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 255, 0), 1, true));
